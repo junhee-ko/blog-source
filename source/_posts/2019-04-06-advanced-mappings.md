@@ -37,8 +37,7 @@ Super-Type Sub-Type Relationship 논리 모델을 실제 물리 모델인 테이
 @DiscriminatorColumn (name = "DTYPE")	// 부모 클래스에 구분 칼럼을 지정
 public abstract class Item {
   
-  @Id @GeneratedValue
-  @Column (name = "ITEM_ID")
+  @Id @GeneratedValue @Column (name = "ITEM_ID")
   private Long id;
   
   private String name; 
@@ -82,8 +81,7 @@ public class Movie extends Item{
 @DiscriminatorColumn (name = "DTYPE")	
 public abstract class Item {
   
-  @Id @GeneratedValue
-  @Column (name = "ITEM_ID")
+  @Id @GeneratedValue @Column (name = "ITEM_ID")
   private Long id;
   
   private String name; 
@@ -121,8 +119,7 @@ public class Movie extends Item{
 @Inheritance (strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Item {
   
-  @Id @GeneratedValue
-  @Column (name = "ITEM_ID")
+  @Id @GeneratedValue @Column (name = "ITEM_ID")
   private Long id;
   
   private String name; 
@@ -157,6 +154,7 @@ public class Movie extends Item{
 //테이블과 매핑할 필요가 없고 자식 엔티티에 공통으로 사용되는 매핑 정보만 제공
 @MappedSuperClass
 public abstract class BaseEntity{ 
+  
   @Id @GeneratedValue
   private Long id;
   
@@ -223,11 +221,12 @@ public class Member extends BaseEntity{
 
 ##### 7.3.2 복합키: 비식별 관계 매핑
 
-둘 이상의 칼럼으로 구성된 복합 기본키를 다음과 같이
+둘 이상의 칼럼으로 구성된 복합 기본키를 다음과 같이 해보면, 매핑 오류가 발생합니다.
 
 ```java
 @Entity
 publi class Hello {
+  
   @Id
   private String id;
   
@@ -236,10 +235,7 @@ publi class Hello {
 }
 ```
 
-해보면 매핑 오류가 발생합니다.
-
 JPA 에서 식별자를 둘 이상 사용하려면 별도의 식별자 클래스를 만들어야합니다. 
-
 복합키를 지원하기 위해, 관계형 데이터베이스에 가까운 방법인 @IdClass 와, 객체지향에 가까운 @EmbededId 두 가지 방법을 제공합니다. 
 
 ###### IdClass
@@ -260,11 +256,10 @@ public class Parent {
 
 public class ParentId implements Serializable { // Serializable 를 구현해야합니다.
   
-  // 식별자 클래스의 속성=명과 엔티티에서 사용하는 식별자의 속성명이 같아야합니다.
+  // 식별자 클래스의 속성명과 엔티티에서 사용하는 식별자의 속성명이 같아야합니다.
   private String id1; //Parernt.id1 과 연결
   private String id2; //Parernt.id2 과 연결
   
-  //기본 생성장가 있어야합니다.
   public ParentId(){ 
   }
  
@@ -312,7 +307,7 @@ public class Child {
   
   // 부모 테이블의 기본 키 칼럼이 복합 키이므로, 자식 테이블의 외래 키도 복합키
   // 외래 키 매핑 시 여러 칼럼을 매핑해야하므로 @JoinColums를 사용
-	@ManyToOne
+  @ManyToOne
   @JoinColums({
     @JoinColum(name = "PARENT_ID1", referencedColumnName = "PARENT_ID1"),
     @JoinColum(name = "PARENT_ID2", referencedColumnName = "PARENT_ID2"),
@@ -431,7 +426,7 @@ public class GrandChild {
 public class GrandChildId implements Serializable {
    
   private ChildId child; //GrandChild.child 매핑
-  private String id; //Child.id 매핑
+  private String id; //GrandChild.id 매핑
   
   //equals, hashCode
   ...
@@ -479,7 +474,6 @@ public class ChildId implements Serializable {
 }
 
 @Entity
-@IdClass(GrandChildId.class)
 public class GrandChild {
   
   @EmbededId
