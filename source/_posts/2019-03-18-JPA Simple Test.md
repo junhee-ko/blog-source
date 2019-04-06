@@ -9,7 +9,8 @@ categories: JPA
 
 #### Docker
 
-Docker는 공식 홈페이지에서 쉽게 설치할 수 있습니다. 
+Docker는 공식 홈페이지에서 쉽게 설치할 수 있습니다 : https://docs.docker.com/docker-for-mac/install/ 
+
 Docker 를 설치하고 다음 명령어를 통해 Postgres Container를 띄웁니다.
 
 ```java
@@ -37,6 +38,8 @@ CREATE TABLE ACCOUNT (id int, username varchar(255), password varchar(255));
 
 #### 의존성 추가
 
+JPA를 사용하기 위한 의존성과 Postgresql 을 사용하기 위한 의존성을 추가합니다.
+
 ```java
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -51,7 +54,7 @@ CREATE TABLE ACCOUNT (id int, username varchar(255), password varchar(255));
 
 #### 설정
 
-Database 연결을 위한 정보를 입력하고, Database Schema를 실행시마다 새로 생성되게 (ddl-auto=create) 설정합니다. 그리고, non_contextual_create=true 를 설정해야 어플리케이션 실행시 발생하는postgres 에러를 막습니다. 
+Database 연결을 위한 정보를 입력하고, Database Schema를 실행시마다 새로 생성되게 (ddl-auto=create) 설정합니다. 그리고, non_contextual_create=true 를 설정해야 어플리케이션 실행시 발생하는 postgres 에러를 해결할 수 있습니다. 
 
 ```java
 spring.datasource.url=jdbc:postgresql://localhost:5432/springdata
