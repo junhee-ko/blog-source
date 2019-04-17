@@ -1,5 +1,4 @@
 ---
-ㅓㅁㅍㅁ
 layout: post
 title:  "[자바 ORM 표준 JPA 프로그래밍] 9장_값 타입"
 date:   2019-04-11
