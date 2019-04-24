@@ -189,7 +189,7 @@ List<Member> findByName (String name); //컬렉션
 Member findByEmail (String email); //단건
 ```
 
-#####12.4.7 페이징과 정렬
+##### 12.4.7 페이징과 정렬
 
 쿼리 메소드에 페이징과 정렬 기능을 사용할 수 있도록 2가지 파라미터를 제공합니다.
 
