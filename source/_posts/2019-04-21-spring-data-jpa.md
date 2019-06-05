@@ -1,5 +1,5 @@
 ---
-//layout: post
+layout: post
 title:  "[자바 ORM 표준 JPA 프로그래밍] 12장_스프링 데이터 JPA"
 date:   2019-04-21
 categories: JPA
