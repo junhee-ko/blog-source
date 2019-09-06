@@ -81,3 +81,5 @@ deploy:
   type: git
   repo: https://github.com/KoJunHee/kojunhee.github.io.git
   branch: master
+  name: KoJunHee
+  email: junheee.ko@gmail.com
