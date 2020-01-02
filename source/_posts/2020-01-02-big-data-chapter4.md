@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "[빅데이터를 지탱하는 기술] 4장_빅데이터 분산처리"
-date:   2019-01-02
+title:  "[빅데이터를 지탱하는 기술] 4장_빅데이터 축적"
+date:   2020-01-02
 categories: Big Data
 ---
 
