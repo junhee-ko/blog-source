@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 10장_상속과 코드 재사용"
 date:   2019-12-22
-categories: Object
+categories: OOP
 ---
 
 이번 장은, 클래스 재사용을 위해 새로운 클래스를 추가하는 가장 대표적 기법인 상속에 대해 정리한다.

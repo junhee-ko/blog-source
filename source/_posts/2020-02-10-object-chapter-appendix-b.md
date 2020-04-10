@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 부록 B 타입 계층의 구현"
 date:   2020-02-10
-categories: Object
+categories: OOP
 ---
 
 타입과 타입 계층을 구현할 수 있는 방법들을 정리하자.

@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 8장_의존성 관리하기"
 date:   2019-12-10
-categories: Object
+categories: OOP
 ---
 
 이번장에서는 충분히 협력적이고 유연한 객체를 만들기 위해, 의존성을 관리하는 방법을 정리한다.

@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 6장_메세지와 인터페이스"
 date:   2019-11-24
-categories: Object
+categories: OOP
 ---
 
 이번 장에서는, 유연하고 재사용 가능한 퍼블릭 인터페이스를 만드는데 도움이 되는 설계 원칙과 기법을 익힌다.

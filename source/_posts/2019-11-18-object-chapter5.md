@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 5장_책임 할당하기"
 date:   2019-11-18
-categories: Object
+categories: OOP
 ---
 
 데이터 중심 설계로 인한 문제를 해결하기 위한 가장 기본적인 방법은, 책임에 초점을 맞추는 것이다.

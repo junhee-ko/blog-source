@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 15장_디자인 패턴과 프레임워크"
 date:   2020-01-27
-categories: Object
+categories: OOP
 ---
 
 1. 디자인 패턴

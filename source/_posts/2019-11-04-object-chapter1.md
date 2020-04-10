@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 1장_객체, 설계"
 date:   2019-11-04
-categories: Object
+categories: OOP
 ---
 
 소프트웨어 설계와 유지보수에 중점을 두려먼 이론이 아닌, 실무에 초점을 맞추어야한다. 

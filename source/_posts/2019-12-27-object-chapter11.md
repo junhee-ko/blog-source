@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 11장_합성과 유연한 설계"
 date:   2019-12-27
-categories: Object
+categories: OOP
 ---
 
 코드 재사용 기법으로는,

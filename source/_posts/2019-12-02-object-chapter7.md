@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 7장_객체 분해"
 date:   2019-12-02
-categories: Object
+categories: OOP
 ---
 
 하향식 기능 분해 -> 모듈 -> 추상 데이터 타입 -> 클래스

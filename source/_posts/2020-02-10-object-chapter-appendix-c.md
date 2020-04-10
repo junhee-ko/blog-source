@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 부록 C 동적인 협력, 정적인 코드"
 date:   2020-02-10
-categories: Object
+categories: OOP
 ---
 
 좋은 설계는 객체 사이의 협력과 행동을 표현하는 동적 모델을 기반으로 해야한다.

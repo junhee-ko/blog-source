@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 9장_유연한 설계"
 date:   2019-12-15
-categories: Object
+categories: OOP
 ---
 
 이번 장은, 8장에서 설명한 의존성 관리 기법들을 원칙이라는 관점에서 정리한다.

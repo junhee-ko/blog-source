@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 14장_일관성 있는 협력"
 date:   2020-01-20
-categories: Object
+categories: OOP
 ---
 
 ## 01 핸드폰 과금 시스템 변경하기

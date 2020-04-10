@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 부록 A 계약에 의한 설계"
 date:   2020-02-03
-categories: Object
+categories: OOP
 ---
 
 인터페이스만으로 객체의 행동에 관한 다양한 관점을 전달하기 어렵다. 

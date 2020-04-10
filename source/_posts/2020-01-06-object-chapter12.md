@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 12장_다형성"
 date:   2020-01-06
-categories: Object
+categories: OOP
 ---
 
 상속의 진정한 목적은 코드 재사용이 아니라 `다형성을 위한 서브타입 계층을 구축` 하는 것이다.

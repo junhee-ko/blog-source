@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f252b0dd-62e9-47a8-b957-979c71de67f3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/2020-03-02-tdd-chapter-04.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2019-12-10-object-chapter8.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2019-12-10-object-chapter8.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2019-12-15-object-chapter9.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2019-12-15-object-chapter9.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2019-12-22-object-chapter10.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2019-12-22-object-chapter10.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2019-12-27-object-chapter11.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2019-12-27-object-chapter11.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2020-01-06-object-chapter12.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2020-01-06-object-chapter12.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2020-01-27-object-chapter15.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2020-01-27-object-chapter15.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2020-02-03-object-chapter-appendix-a.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2020-02-03-object-chapter-appendix-a.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2020-02-10-object-chapter-appendix-b.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2020-02-10-object-chapter-appendix-b.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/2020-02-10-object-chapter-appendix-c.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2020-02-10-object-chapter-appendix-c.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/landscape" beforeDir="false" afterPath="$PROJECT_DIR$/themes/landscape" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/landscape/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/landscape/_config.yml" afterDir="false" />
     </list>
@@ -18,11 +26,11 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/_posts/2020-03-02-tdd-chapter-04.md">
+        <entry file="file://$PROJECT_DIR$/source/_posts/2019-12-10-object-chapter8.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="306">
-                <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+              <first_editor relative-caret-position="72">
+                <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
               </first_editor>
               <second_editor />
             </state>
@@ -47,6 +55,7 @@
       <find>fa</find>
       <find>cus</find>
       <find>custo</find>
+      <find>object</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -61,6 +70,15 @@
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/source/_posts/2020-02-03-object-chapter-more.md" />
         <option value="$PROJECT_DIR$/themes/landscape/_config.yml" />
+        <option value="$PROJECT_DIR$/source/_posts/2020-02-10-object-chapter-appendix-c.md" />
+        <option value="$PROJECT_DIR$/source/_posts/2020-02-10-object-chapter-appendix-b.md" />
+        <option value="$PROJECT_DIR$/source/_posts/2020-02-03-object-chapter-appendix-a.md" />
+        <option value="$PROJECT_DIR$/source/_posts/2020-01-27-object-chapter15.md" />
+        <option value="$PROJECT_DIR$/source/_posts/2020-01-06-object-chapter12.md" />
+        <option value="$PROJECT_DIR$/source/_posts/2019-12-27-object-chapter11.md" />
+        <option value="$PROJECT_DIR$/source/_posts/2019-12-22-object-chapter10.md" />
+        <option value="$PROJECT_DIR$/source/_posts/2019-12-15-object-chapter9.md" />
+        <option value="$PROJECT_DIR$/source/_posts/2019-12-10-object-chapter8.md" />
       </list>
     </option>
   </component>
@@ -83,6 +101,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -106,7 +125,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -151,17 +169,18 @@
       <workItem from="1580723583152" duration="1278000" />
       <workItem from="1582099501947" duration="336000" />
       <workItem from="1583149754129" duration="71000" />
+      <workItem from="1586504309540" duration="75000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5666000" />
+    <option name="totallyTimeSpent" value="5741000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49780703" weight="0.25763127" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49780703" visible="true" weight="0.25763127" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -279,16 +298,6 @@
     <entry file="file://$PROJECT_DIR$/themes/tranquilpeak/source/assets/images/cover.jpg" />
     <entry file="file://$PROJECT_DIR$/.deploy_git/assets/images/profile.jpg" />
     <entry file="file://$PROJECT_DIR$/source/_posts/2020-02-03-object-chapter-more.md" />
-    <entry file="file://$PROJECT_DIR$/source/_posts/2020-01-27-object-chapter15.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="342">
-            <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/landscape/source/css/images/favicon.ico">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -310,7 +319,111 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="306">
-            <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+            <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2019-12-15-object-chapter9.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="126">
+            <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2019-12-22-object-chapter10.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="72">
+            <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+            <folding>
+              <element signature="e#253#254#0" expanded="true" />
+              <element signature="e#302#303#0" expanded="true" />
+              <element signature="e#343#344#0" expanded="true" />
+              <element signature="e#370#371#0" expanded="true" />
+              <element signature="e#282#283#0" expanded="true" />
+              <element signature="e#313#314#0" expanded="true" />
+              <element signature="e#348#349#0" expanded="true" />
+              <element signature="e#376#377#0" expanded="true" />
+              <element signature="e#407#408#0" expanded="true" />
+              <element signature="e#436#437#0" expanded="true" />
+              <element signature="e#471#472#0" expanded="true" />
+              <element signature="e#501#502#0" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2019-12-27-object-chapter11.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="72">
+            <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2020-01-06-object-chapter12.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="72">
+            <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2020-01-27-object-chapter15.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="72">
+            <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2020-02-03-object-chapter-appendix-a.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="72">
+            <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2020-02-10-object-chapter-appendix-b.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="72">
+            <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2020-02-10-object-chapter-appendix-c.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="72">
+            <caret line="4" column="12" lean-forward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2019-12-10-object-chapter8.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="72">
+            <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
           </first_editor>
           <second_editor />
         </state>

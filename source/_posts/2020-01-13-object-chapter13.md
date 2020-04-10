@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 13장_서브클래싱과 서브타이핑"
 date:   2020-01-13
-categories: Object
+categories: OOP
 ---
 
 상속의 두가지 용도는 다음과 같다.

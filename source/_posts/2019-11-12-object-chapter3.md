@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 3장_역할,책임,협력"
 date:   2019-11-12
-categories: Object
+categories: OOP
 ---
 
 객체지향 설계의 핵심은 협력을 구성하기 위해 적절한 객체를 찾고 적절한 책임을 할당하는 과정에 있다. 

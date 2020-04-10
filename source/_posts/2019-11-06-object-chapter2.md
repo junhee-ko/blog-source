@@ -2,7 +2,7 @@
 layout: post
 title:  "[오브젝트] 2장_객체지향 프로그래밍"
 date:   2019-11-06
-categories: Object
+categories: OOP
 ---
 
 이번 장의 목표는 이 책의 다양한 주제들을 가볍게 살펴보는 것이다.
