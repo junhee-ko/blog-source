@@ -3,25 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f252b0dd-62e9-47a8-b957-979c71de67f3" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/themes/icarus/source/img/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-04-프론트엔드, 백엔드.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-04-프론트엔드, 백엔드.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-05- browser에서의 웹 개발.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-05- browser에서의 웹 개발.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-05- 웹 서버.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-05- 웹 서버.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-06-HTML.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-06-HTML.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-06-Spring IoC:DI 컨테이너.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-06-Spring IoC:DI 컨테이너.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-07-HttpServletRequest, HttpServletResponse .md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-07-HttpServletRequest, HttpServletResponse .md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-07-Servlet.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-07-Servlet.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-08-DTO, DAO.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-08-DTO, DAO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-08-Database.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-08-Database.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-08-JDBC.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-08-JDBC.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/2018-05-08-SQL.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/2018-05-08-SQL.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/icarus" beforeDir="false" afterPath="$PROJECT_DIR$/themes/icarus" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/icarus/source/img/favicon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/landscape" beforeDir="false" afterPath="$PROJECT_DIR$/themes/landscape" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/landscape/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/landscape/_config.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,12 +16,20 @@
     <favorites_list name="blog-source" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/themes/icarus/_config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="410">
+              <caret line="191" column="32" lean-forward="true" selection-start-line="191" selection-start-column="32" selection-end-line="191" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fa</find>
-      <find>cus</find>
       <find>custo</find>
       <find>object</find>
       <find>junhee.ko</find>
@@ -67,13 +58,15 @@
       <find>NAVER edwith boostcourse Full-Stack Web Develope</find>
       <find>오브젝트</find>
       <find>오브젝트</find>
+      <find>favi</find>
+      <find>gmail</find>
     </findStrings>
     <replaceStrings>
       <replace>---</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/icarus" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -102,9 +95,9 @@
         <option value="$PROJECT_DIR$/source/_posts/2020-01-13-object-chapter13.md" />
         <option value="$PROJECT_DIR$/source/_posts/2020-01-20-object-chapter14.md" />
         <option value="$PROJECT_DIR$/themes/icarus/layout/ads/coupang_ad.ejs" />
-        <option value="$PROJECT_DIR$/themes/icarus/_config.yml" />
         <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/source/_posts/2018-05-08-JDBC.md" />
+        <option value="$PROJECT_DIR$/themes/icarus/_config.yml" />
       </list>
     </option>
   </component>
@@ -114,9 +107,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
+    <option name="x" value="82" />
+    <option name="y" value="23" />
     <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="height" value="1027" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -139,6 +134,27 @@
               <item name="blog-source" type="b2602c69:ProjectViewProjectNode" />
               <item name="blog-source" type="462c0819:PsiDirectoryNode" />
               <item name="themes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blog-source" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blog-source" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="icarus" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blog-source" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blog-source" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="icarus" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="blog-source" type="b2602c69:ProjectViewProjectNode" />
+              <item name="blog-source" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="icarus" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -194,15 +210,16 @@
       <workItem from="1586941054957" duration="236000" />
       <workItem from="1591784474472" duration="223000" />
       <workItem from="1591784755792" duration="3614000" />
-      <workItem from="1591788539242" duration="4140000" />
+      <workItem from="1591788539242" duration="4649000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14665000" />
+    <option name="totallyTimeSpent" value="15174000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <frame x="82" y="23" width="1680" height="1027" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49780703" visible="true" weight="0.15689866" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -243,13 +260,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/tranquilpeak/source/assets/images/cover-v1.2.0.jpg" />
     <entry file="file://$PROJECT_DIR$/source/image/processmanagemnet.png">
       <provider selected="true" editor-type-id="images" />
@@ -458,24 +468,6 @@
     <entry file="file://$PROJECT_DIR$/themes/landscape/source/css/images/banner.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/logo.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/avatar.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/favicon.ico">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/thumbnail.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/razor-top-black.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/razor-bottom-black.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/icarus/layout/post.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -531,13 +523,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/themes/icarus/layout/index.jsx">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/icarus/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="278" column="5" selection-start-line="278" selection-start-column="5" selection-end-line="278" selection-end-column="5" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/2020-05-22-spring-mvc.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -611,6 +596,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/thumbnail.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/razor-top-black.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/razor-bottom-black.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/og_image.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/favicon.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/logo.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/icarus/source/img/avatar.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/icarus/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="191" column="32" lean-forward="true" selection-start-line="191" selection-start-column="32" selection-end-line="191" selection-end-column="32" />
         </state>
       </provider>
     </entry>
