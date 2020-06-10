@@ -25,6 +25,6 @@ categories: Boost Course
   - WAS는 어떤 클라이언트가 요청을 보냈는지 알고 있고, 해당 클라이언트에게 응답을 보내기 위한 HttpServleResponse객체를 생성하여 서블릿에게 전달합니다.
   - 서블릿은 해당 객체를 이용하여 content type, 응답코드, 응답 메시지등을 전송합니다.
 
-- Reference
+---
 
-  - NAVER edwith boostcourse Full-Stack Web Developer 
+NAVER edwith boostcourse Full-Stack Web Developer

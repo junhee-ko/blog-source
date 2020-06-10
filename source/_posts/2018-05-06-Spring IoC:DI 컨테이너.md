@@ -35,6 +35,6 @@ categories: Boost Course
 
   ![](/image/di02.png)
 
-- Reference
+---
 
-  - NAVER edwith boostcourse Full-Stack Web Developer 
+NAVER edwith boostcourse Full-Stack Web Developer
