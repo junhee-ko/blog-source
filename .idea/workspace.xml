@@ -12,43 +12,6 @@
   <component name="FavoritesManager">
     <favorites_list name="blog-source" />
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>bulma</find>
-      <find>ARCHIVES</find>
-      <find>archives</find>
-      <find>subsri</find>
-      <find>links</find>
-      <find>icarus</find>
-      <find>tags</find>
-      <find>posts</find>
-      <find>about</find>
-      <find>word</find>
-      <find>search</find>
-      <find>ad</find>
-      <find>ad_unit</find>
-      <find>client_id</find>
-      <find>a</find>
-      <find>share</find>
-      <find>alipay</find>
-      <find>NAVER edwith boostcourse Full-Stack Web Develope</find>
-      <find>오브젝트</find>
-      <find>favi</find>
-      <find>gmail</find>
-      <find>google</find>
-      <find>&lt;/aside&gt;</find>
-      <find>partial</find>
-      <find>side</find>
-      <find>sidebar</find>
-      <find>adsense</find>
-      <find>AdSense</find>
-      <find>adse</find>
-      <find>code</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>---</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/icarus" />
   </component>
@@ -104,6 +67,8 @@
       <workItem from="1593337771455" duration="99000" />
       <workItem from="1593337917962" duration="66000" />
       <workItem from="1593353515360" duration="3000" />
+      <workItem from="1593440465094" duration="119000" />
+      <workItem from="1593440595162" duration="349000" />
     </task>
     <task id="LOCAL-00001" summary="CHANGE : theme icarus">
       <created>1593323895131</created>
@@ -123,7 +88,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CHANGE : theme icarus" />
