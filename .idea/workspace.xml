@@ -3,17 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="f252b0dd-62e9-47a8-b957-979c71de67f3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="blog-source" />
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/icarus" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1dwZ2otswUKFVaJy0sYYlbPIY1V" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -29,6 +27,7 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1592490237881" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="yarn" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -69,6 +68,8 @@
       <workItem from="1593353515360" duration="3000" />
       <workItem from="1593440465094" duration="119000" />
       <workItem from="1593440595162" duration="349000" />
+      <workItem from="1595666796210" duration="2104000" />
+      <workItem from="1595668981342" duration="3916000" />
     </task>
     <task id="LOCAL-00001" summary="CHANGE : theme icarus">
       <created>1593323895131</created>
@@ -84,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593324320081</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="DELETE : Profile Image">
+      <created>1595668229241</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1595668229241</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,7 +101,34 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CHANGE : theme icarus" />
     <MESSAGE value="CHANGE : favicon" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHANGE : favicon" />
+    <MESSAGE value="DELETE : Profile Image" />
+    <option name="LAST_COMMIT_MESSAGE" value="DELETE : Profile Image" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="417" y="110" key="CommitChangelistDialog2" timestamp="1595668229004">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="417" y="110" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1595668229004" />
+    <state x="100" y="123" width="1480" height="827" key="DiffContextDialog" timestamp="1595668977714">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="100" y="123" width="1480" height="827" key="DiffContextDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1595668977714" />
+    <state x="341" y="175" key="SettingsEditor" timestamp="1595669012867">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="341" y="175" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1595669012867" />
+    <state x="142" y="276" width="1098" height="520" key="Vcs.Push.Dialog.v2" timestamp="1595668451135">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="142" y="276" width="1098" height="520" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1595668451135" />
+    <state x="541" y="291" width="598" height="490" key="find.popup" timestamp="1595672460128">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="541" y="291" width="598" height="490" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1595672460128" />
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1595671045196">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1595671045196" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
