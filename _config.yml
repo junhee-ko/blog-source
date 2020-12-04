@@ -79,7 +79,7 @@ theme: icarus
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/KoJunHee/kojunhee.github.io.git
+  repo: git@github.com:KoJunHee/kojunhee.github.io.git
   branch: master
   name: KoJunHee
   email: junheee.ko@gmail.com
