@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f252b0dd-62e9-47a8-b957-979c71de67f3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.deploy_git/image/Swift_logo_vert_lockup_color.svg" beforeDir="false" afterPath="$PROJECT_DIR$/.deploy_git/image/Swift_logo_vert_lockup_color.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.deploy_git/img/razor-bottom-black.svg" beforeDir="false" afterPath="$PROJECT_DIR$/.deploy_git/img/razor-bottom-black.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.deploy_git/img/razor-top-black.svg" beforeDir="false" afterPath="$PROJECT_DIR$/.deploy_git/img/razor-top-black.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -12,8 +11,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1dwZ2otswUKFVaJy0sYYlbPIY1V" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -24,9 +29,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1592490237881" />
+    <property name="go.import.settings.migrated" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -41,6 +48,7 @@
       <recent name="$PROJECT_DIR$/source/_posts" />
     </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -72,6 +80,7 @@
       <workItem from="1593440595162" duration="349000" />
       <workItem from="1595666796210" duration="2104000" />
       <workItem from="1595668981342" duration="3916000" />
+      <workItem from="1607091844322" duration="596000" />
     </task>
     <task id="LOCAL-00001" summary="CHANGE : theme icarus">
       <created>1593323895131</created>
@@ -98,7 +107,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CHANGE : theme icarus" />
