@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[도커/쿠버네티스] 1장_도커란?"
-date: 2020-12-05
+date: 2020-12-04
 categories: Container
 ---
 
