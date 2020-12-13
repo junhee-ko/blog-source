@@ -5,6 +5,8 @@ date: 2020-12-10
 categories: Container
 ---
 
+Pod / Replica Set / Service / Deployment 오브젝트를 정리한다.
+
 ## 쿠버네티스의 고유 특징
 
 1. 모든 리소스는 오브젝트 형태로 관리된다.
