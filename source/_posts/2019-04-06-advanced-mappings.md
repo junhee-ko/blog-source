@@ -16,7 +16,6 @@ categories: JPA
 #### 7.1 상속 관계 매핑
 
 관계형 데이터베이스에는 상속이라는 개념이 없습니다. 대신에, Super-Type Sub-Type Relationship 이라는 모델링 기법이 객체의 상속 개념과 가장 유사합니다. ORM 의 상속 관계 매핑은 객체의 상속 구조와 데이터베이스의 Super-Type Sub-Type Relationship 을 매핑하는 것입니다.
-
 Super-Type Sub-Type Relationship 논리 모델을 실제 물리 모델인 테이블로 구현할 때는 3가지 방법이 있습니다.
 
 - 각각의 테이블로 변환
@@ -288,7 +287,6 @@ em.persist(parent)
 ```
 
 영속성 컨텍스트에 엔티티를 등록하기 직전에, 내부에서 Parent.id1, Parent.id2 값을 사용해서 식별자 클래스인 ParentId 를 생성하고 영속성 컨텍스트의 키로 사용합니다.
-
 ParentId 를 사용해서 엔티티를 조회합니다.
 
 ```java

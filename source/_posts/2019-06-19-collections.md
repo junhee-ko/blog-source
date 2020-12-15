@@ -43,9 +43,7 @@ System.out.println("after Persist = " + team.getMembers().getClass());
 출력 결과는 
 
 before Persist = class java.util.ArrayList
-
 after Persist = class org.hibernate.collection.internal.PersistentBag
-
 하이버네이트는 컬렉션을 효율적으로 관리하기 위해, 엔티티를 영속 상태로 만들 때 원본 컬렉션을 감싸고 있는 내장 컬렉션을 생성해서 이 내장 컬렉션을 사용하도록 참조를 변경합니다. 하이버네이트가 제공하는 내장 컬렉션은 원본 컬렉션을 감싸고 있어서 래퍼 컬렉션이라고 부릅니다.
 
 ##### 14.1.2 Collection, List
@@ -83,6 +81,5 @@ List 인터페이스에 @OrderColumn 을 추가하면 순서가 있는 특수한
 
 #### 14.4 엔티티 그래프
 
-엔티티를 조회할 때 연관된 엔티티를 함께 조회하려면 글로벌 fetch 옵션을 FetchType.EAGER 로 설정하거나 JPQL 엣 ㅓ페치 조인을 사용합니다. 
-
+엔티티를 조회할 때 연관된 엔티티를 함께 조회하려면 글로벌 fetch 옵션을 FetchType.EAGER 로 설정하거나 JPQL 엣 ㅓ페치 조인을 사용합니다.
 엔티티 그래프 기능은 엔티티 조회 시점에 연관된 엔티티를 함께 조회하는 기능입니다. 엔티티 그래프는 정적으로 정의하는 Named 엔티티 그래프와 동적으로 정의하는 엔티티 그래프가 있습니다.

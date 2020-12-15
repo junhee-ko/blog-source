@@ -7,11 +7,9 @@ categories: Spring
 ## 1. IoC 종류
 
 IoC (Inversion of Control ) 은 두 가지로 나뉜다 : DI, DL
-
 DI 는 `IoC 컨테이너가 컴포넌트에 의존성을 주입`시켜 준다. 반면, DL 은 컴포넌트 `스스로 의존성 참조`를 가져온다.
 
 - DI (Dependency Injection)
-
   - 생성자 주입 : IoC 컨테이너는 해당 컴포넌트를 초기화할 때, 컴포넌트에 필요한 의존성을 전달
 
     ```java
@@ -39,7 +37,6 @@ DI 는 `IoC 컨테이너가 컴포넌트에 의존성을 주입`시켜 준다. �
     ```
   
 - DL (Dependency Lookup)
-
   - Depenency Pull : 중앙 registry 에서 의존성을 직접 가져오는 방식 ( register -> container )
 
     ```java
@@ -74,16 +71,13 @@ DI 는 `IoC 컨테이너가 컴포넌트에 의존성을 주입`시켜 준다. �
 ## 2. BeanFactory, ApplicationContext
 
 1. Bean : 컨테이너가 관리하는 모든 컴포넌트
-
 2. BeanFactory interface : 컴포넌트의 라이프사이클과 의존성을 관리
-
 3. ApplicationContext interface (extends BeanFactory) : DI 외에도, 트랜잭션, AOP, 애플리케이션 이벤트 처리 기능 제공
 
 
 ## 3. Application Context 구성
 
 1. Component 선언
-
    AppliceionContext 를 부트스트랩할 때, 컴포넌트를 찾아서 빈 인스턴스를 생성한다.
 
    ```java
@@ -109,7 +103,6 @@ DI 는 `IoC 컨테이너가 컴포넌트에 의존성을 주입`시켜 준다. �
    ```
 
 2. Java Configuration
-
    Configuration 클래스에는, IoC 컨테이너가 빈 인스턴스를 만들 때 호출하는 @Bean 어노테이션이 적용된 메서드가 있다.
 
    ```java
@@ -205,9 +198,7 @@ DI 는 `IoC 컨테이너가 컴포넌트에 의존성을 주입`시켜 준다. �
 ## 5. 빈 명명 규칙
 
 모든 빈은 ApplicationContext 내에서 고유한 하나 이상의 이름을 가져야한다.
-
 id 나 이름이 없는 같은 타입의 빈이 여러개 선언되면, 스프링은 ApplicationContext 를 초기화하는 과정에서 빈을 주입할 때 예외 (NoSuchBeanDefinitionException) 를 던진다.
-
 다음 Singer 클래스의 경우, 클래스명 자체로 빈을 명명한다 : singer
 
 ```java
@@ -242,7 +233,6 @@ static class AliasBeanConfig {
 ## 6. 빈 생성 방식
 
 기본적으로 스프링의 모든 빈은 `싱글톤`이다. 즉, 스프링은 빈의 단일 인스턴스를 유지하고 관리한다. ApplicationContext.getBean() 에 대한 모든 호출은 동일한 인스턴스를 반환한다.
-
 `빈의 인스턴스를 가져올 때마다 새로운 빈 인스턴스`를 가져오려면 ? 다음과 같이, `prototype` 으로 변경해라.
 
 ```java
@@ -271,10 +261,8 @@ public class Singer {
 4. default : 빈에 기본 생성자가 있으면 byType 방식, 없으면 Constructor 방식
 5. no : 기본값
 
-어노테이션을 이용해서 구성할 때, 기본 Autowiring 방식은 byType 이다. 
-
+어노테이션을 이용해서 구성할 때, 기본 Autowiring 방식은 byType 이다.
 이름을 기반으로 Autowiring 을 하기 위해서는 @Autowired 와 주입되어야 하는 빈의 이름을 인자로 전달하는 @Qualifier 을 적용해라.
-
 다음 코드로 예를 들어보자. 
 
 
@@ -372,18 +360,13 @@ public class FooImplTwo implements Foo{
 }
 ```
 
-그리고 다시 TrickyTarget 클래스를 실행하면, UnsatisfiedDependencyExpcetion 이 발생한다. 
-
+그리고 다시 TrickyTarget 클래스를 실행하면, UnsatisfiedDependencyExpcetion 이 발생한다.
 이 메세지는 스프링이 setFoo 메서드를 사용해서 주입해야하는 빈이 어떤 빈인지 알지 못한다는 것이다.
-
 이를 해결 하는 두 가지 방법이 있다 : @Primary, @Qualifier
 
 1. @Primary
-
-   타입을 기반으로 Autowiring 할 때, 스프링에게 자신의 우선순위를 높게 지정한다. 
-
+   타입을 기반으로 Autowiring 할 때, 스프링에게 자신의 우선순위를 높게 지정한다.
    @Primary 는 정확히 두 개의 관련 빈 타입이 있을 경우에 유용하다.
-
    ```java
    @Component
    @Primary
@@ -402,7 +385,6 @@ public class FooImplTwo implements Foo{
    ```
 
 2. @Qualifier
-
    모호한 setter 였던 setFooOne() 과 setFooTwo() 에 @Autowired 와 함께 적용한다.
    
    ```java

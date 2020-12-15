@@ -47,7 +47,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 ```
 
 회원과 상품 리포지토리 구현체는 애플리케이션 실행 시점에 스프링 데이터 JPA가 생성해서 주입해줍니다. 즉, 개발자가 직접 구현체를 개발하지 않아도 됩니다.
-
 일반적인 CRUD 메소드는 JpaRepository 인터페이스가 공통으로 제공하지만, MemberRepository.findByUsername(...) 처럼 직접 작성한 공통으로 처리할 수 없는 메소드는 스프링 데이터 JPA 가 메소드 이름을 분석해서 JPQL 을 실행합니다.
 
 ##### 12.1.1 스프링 데이터 프로젝트
@@ -237,7 +236,6 @@ Page<Member> findByName (String name, Pagable pageable);
 #### 12.5 명세
 
 도메인 주도 설계에서 명세라는 개념을 소개하는데, 스프링 데이터 JPA 는 JPA Criteria 로 이 개념을 사용할 수 있습니다.
-
 명세를 이해하기 위한 핵심 단어는 술어입니다. 이것은 단순히 참이나 거짓으로 평가됩니다. 스프링 데이터 JPA 는 이 술어를 org.springframework.data.jpa.domain.Specification 클래스로 정의했습니다. Specification 은 컴포지트 패턴으로 구성되어 있어서 여러 Specification 으로 조합할 수 있습니다.즉, 다양한 검색 조건을 조립해서 새로운 검색 조건을 쉽게 만들 수 있습니다.
 
 ```java

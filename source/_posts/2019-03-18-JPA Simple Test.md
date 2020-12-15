@@ -9,8 +9,7 @@ categories: JPA
 
 #### Docker
 
-Docker는 공식 홈페이지에서 쉽게 설치할 수 있습니다 : https://docs.docker.com/docker-for-mac/install/ 
-
+Docker는 공식 홈페이지에서 쉽게 설치할 수 있습니다 : https://docs.docker.com/docker-for-mac/install/
 Docker 를 설치하고 다음 명령어를 통해 Postgres Container를 띄웁니다.
 
 ```java

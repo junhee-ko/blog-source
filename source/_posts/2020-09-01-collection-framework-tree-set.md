@@ -9,8 +9,7 @@ Collection Framework 의 인터페이스 구조는 다음과 같다.
 
 ![](/image/collectoin-01.png)
 
-여기서, Set 인터페이스를 구현하는 클래스로는 HashSet, TreeSet 이 있다. 
-
+여기서, Set 인터페이스를 구현하는 클래스로는 HashSet, TreeSet 이 있다.
 TreeSet 클래스를 정리해보자.
 
 ## 1. Set 인터페이스
@@ -23,9 +22,7 @@ Set 인터페이스를 구현하는 클래스는 다음 특징을 가진다.
 ## 2. TreeSet - 예시 01
 
 TreeSet 은 Set 의 위 두 가지 특성을 모두 만족한다. 그리고, 다음 특성도 만족한다.
-
 3. 데이터를 정렬된 상태로 유지
-
 다음 코드로, 확인해보자.
 
 ```java
@@ -58,7 +55,6 @@ void tree_set() {
 ## 3. TreeSet - 예시 02
 
 그런데, 다음과 같이 정의된 클래스의 인스턴스가 TreeSet 에 저장하는 대상이라면
-
 정렬 기준은 뭘까 ?
 
 ```java
@@ -73,8 +69,7 @@ public class IamPerson {
 }
 ```
 
-정렬 기준을 알 수 없다. 
-
+정렬 기준을 알 수 없다.
 왜냐하면 name 으로 할 것인지 age 로 할 것인지, 정렬 기준을 정하지 않았기 때문이다. 
 
 ## 4. Comparable
@@ -132,10 +127,8 @@ ko 35
 
 ## 5. Comparator
 
-정렬 기준을 제시하는 두 번째 방법으로, 
-
+정렬 기준을 제시하는 두 번째 방법으로,
 Comparator 인터페이스를 구현한 구체 클래스를 TreeSet 의 생성자에 전달할 수 있다.
-
 TreeSet 클래스에, Comparator 를 인자로 받을 수 있는 생성자가 다음과 같이 정의되어 있다.
 
 ![](/image/collectoin-tree-set.png)

@@ -10,7 +10,6 @@ Spring MVC 는 어떻게 Client 의 요청을 처리하는지에 대해 정리�
 ## DispatcherServlet
 
 DispatchServlet 은 Client 의 요청에 대해 실제 처리하는 메서드를 호출해주는 Front Controller 역할을 하는 클래스이다.
-
 계층 구조는 다음과 같다.
 
 ![](/image/spring_mvc_01.png)
@@ -29,8 +28,6 @@ DispatchServlet 은 Client 의 요청에 대해 실제 처리하는 메서드를
 6. HandlerAdapter 는 Handler 의 응답을 처리한다.
 7. 최종적으로 응답을 보낸다.
 
-
-
 디버거를 이용해서, 위 흐름을 코드로 상세히 살펴보자.
 
 1. Client 가 GET 요청을 하면, FrameworkServlet 의 doGet() 이 실행된다.
@@ -42,13 +39,11 @@ DispatchServlet 은 Client 의 요청에 대해 실제 처리하는 메서드를
    ![](/image/spring_mvc_03.png)
 
 3. DispatcherServlet 의 doService 메서드임을 알 수 있다.
-
    여기서, handlerMappings 나 hadnlerAdapterts 클래스들은 아래와 같이 주입된 것이 확인된다.
 
    ![](/image/spring_mvc_04.png)
 
-   이 클래스들은, Spring Boot Auto Configure 로 인해서, WebMvcAutoConfiguration 에서 Bean 으로 등록된다. 
-
+   이 클래스들은, Spring Boot Auto Configure 로 인해서, WebMvcAutoConfiguration 에서 Bean 으로 등록된다.
    다음과 같이 WebMvcAutoConfiguration 에서 여러 Bean 들이 등록되는 것을 알 수 있다.
 
    ![](/image/spring_mvc_05.png)

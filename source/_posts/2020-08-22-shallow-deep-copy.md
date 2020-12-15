@@ -8,7 +8,6 @@ categories: Java
 ## 1. Clone
 
 Object 클래스에는 인스턴스 복사를 위한 clone 메서드가 정의되어 있다.
-
 이 메서드가 호출되면, 호출된 인스턴스의 복사본이 생성되고 이 복사본의 참조값이 반환된다.
 
 ![](/image/clone-object.png)
@@ -154,7 +153,6 @@ public void test_shallow_copy() {
 ![](/image/clone-shallow-clone.png)
 
 하지만, Object 클래스의 clone 메서드는 인스턴스의 변수에 저장되어 있는 값을 복사할 뿐, 참조하는 대상 자체를 복사하지는 않는다.
-
 즉, upperLeft 와 lowerRight 의 참조값이 복사된 것이지 참조변수가 가리키는 인스턴스 자체가 복사된 것은 아니다.
 
 ![](/image/clone-shallow-clone-result.png)
@@ -163,10 +161,8 @@ public void test_shallow_copy() {
 
 ## 3. Deep Copy
 
-그렇다면, 참조변수가 가리키는 인스턴스 자체를 복사하기 위해서는 어떻게 해야할까 ? 
-
+그렇다면, 참조변수가 가리키는 인스턴스 자체를 복사하기 위해서는 어떻게 해야할까 ?
 이를 위한 문법은 지원하지 않는다. 직접 코드 구현을 해야한다.
-
 Point 클래스는 위 shallow copy 와 동일하다.
 
 ```java
@@ -266,7 +262,6 @@ public void test_deep_copy() {
 ## 4. String Copy
 
 인스턴스 변수가 String 인 경우를 고려해보자. 우선 다음 코드를 보자.
-
 다음과 같이 Person 클래스가 있다.
 
 ```java
