@@ -31,7 +31,7 @@ jko/composetest:web apachectl -DFOREGROUND
 
 ```yaml
 version: '3.0'
-services: //생성될 컨테이너를 묶어놓은 단위
+services: # 생성될 컨테이너를 묶어놓은 단위
   web:
     image: jko/composetest:web
     ports:

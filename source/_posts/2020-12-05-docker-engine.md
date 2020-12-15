@@ -167,16 +167,16 @@ docker search ubuntu
 1. Dockerfile 작성
 
    ```dockerfile
-   FROM ubuntu:14.04  // 생성할 이미지의 베이스가 될 이미지
-   MAINTAINER jko // 이미지 생성한 개발자의 정보
-   LABEL "perpose"="practice" // 이미지의 메타데이터
-   RUN apt-get update // 이미지 만들기 위해 컨테이너 내부에서 명령어 실행
+   FROM ubuntu:14.04  # 생성할 이미지의 베이스가 될 이미지
+   MAINTAINER jko # 이미지 생성한 개발자의 정보
+   LABEL "perpose"="practice" # 이미지의 메타데이터
+   RUN apt-get update # 이미지 만들기 위해 컨테이너 내부에서 명령어 실행
    RUN apt-get install apache2 -y
-   ADD test.html /var/www/html // Dockerfile 이 위치한 디렉토리에서 test.html 파일을 이미지의 /var/www/html 디렉토리에 추가
-   WORKDIR /var/www/html // == cd 명령어
+   ADD test.html /var/www/html # Dockerfile 이 위치한 디렉토리에서 test.html 파일을 이미지의 /var/www/html 디렉토리에 추가
+   WORKDIR /var/www/html # == cd 명령어
    RUN ["/bin/bash", "-c", "echo hello >> test2.html"]
-   EXPOSE 80 // 이미지에서 노출할 포트
-   CMD apachectl -DFOREGROUND // 컨테이너가 시작될 때마다 실행할 명렁어
+   EXPOSE 80 # 이미지에서 노출할 포트
+   CMD apachectl -DFOREGROUND # 컨테이너가 시작될 때마다 실행할 명렁어
    ```
 
 2. Dockerfile 빌드 

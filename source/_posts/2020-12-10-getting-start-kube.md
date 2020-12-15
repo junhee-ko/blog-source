@@ -122,17 +122,17 @@ Nginx 포드를 생성하는 래플리카셋을 만들기 위해, replicaset-ngi
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: replicaset-nginx // 이 레플리카셋의 고유 이름
+  name: replicaset-nginx # 이 레플리카셋의 고유 이름
 spec:
-  replicas: 3 // 동일 포드를 몇 개로 유지할지
+  replicas: 3 # 동일 포드를 몇 개로 유지할지
   selector:
     matchLabels:
-      app: my-nginx-pods-label // 여기까지가 레플리카셋의 정의
-  template: // 여기서부터, 포드 정의
+      app: my-nginx-pods-label # 여기까지가 레플리카셋의 정의
+  template: # 여기서부터, 포드 정의
     metadata:
       name: my-nginx-pod
       labels: 
-        app: my-nginx-pods-label // 라벨
+        app: my-nginx-pods-label # 라벨
     spec:
       containers:
       - name: nginx
@@ -275,10 +275,10 @@ metadata:
 spec:
   ports:
     - name: web-port
-      port: 8080 // 서비스의 IP 에 접근할 때 사용할 포트
-      targetPort: 80 // selector 항목에서 정의한 라벨에 의해 접근 대상이 된 포드들이 내부적으로 사용하는 포트
+      port: 8080 # 서비스의 IP 에 접근할 때 사용할 포트
+      targetPort: 80 # selector 항목에서 정의한 라벨에 의해 접근 대상이 된 포드들이 내부적으로 사용하는 포트
   selector:
-    app: webserver // 이 서비스에서 어떤 라벨을 가지는 포드에 접근할 수 있게 할지
+    app: webserver # 이 서비스에서 어떤 라벨을 가지는 포드에 접근할 수 있게 할지
   type: ClusterIP
 ```
 
