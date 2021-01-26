@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[OAuth 2.0 마스터] 5장_엑세스 토큰 얻기 : Implicit Grant"
+title: "[OAuth 2.0 마스터] 5장_Implicit Grant"
 date: 2021-01-26
 categories: OAuth
 ---
