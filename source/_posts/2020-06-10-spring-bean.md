@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Sprint Boot Bean"
+title:  "Bean"
 date:   2020-06-11
 categories: Spring
 ---
