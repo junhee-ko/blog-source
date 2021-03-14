@@ -65,7 +65,7 @@ READ UNCOMMITTED, READ COMMITTED , REPEATABLE READ, SERIALIZABLE 으로 격리 �
 
 ## Pessimistic Lock
 
-트랜잭션의 충돌이 발생할 것이라도 비관적으로 가정하는 방법이다. 그래서, 우선 락을 걸고 본다.
+트랜잭션의 충돌이 발생할 것이라 비관적으로 가정하는 방법이다. 그래서, 우선 락을 걸고 본다.
 데이터베이스가 제공하는 락 기능을 사용한다.
 
 ## Second Lost Updates Problem
@@ -81,7 +81,126 @@ READ UNCOMMITTED, READ COMMITTED , REPEATABLE READ, SERIALIZABLE 으로 격리 �
 
 1. 마지막 커밋만 인정
 2. 최초 커밋만 인정
-3. 충돌하는 갱신 내용 병합 
+3. 충돌하는 갱신 내용 병합
+
+## @Version
+
+JPA 가 제공하는 낙관적 락을 사용하기위해서는, @Version 으로 버전 관리 기능을 추가해야한다.
+다음 처럼, 엔티티에 버전 관리용 필드를 추가하고 @Version 을 붙이면 된다.
+
+```java
+@Entity
+public class Person {
+   @Id
+   private String id;
+   private String title;
+   @Version
+   private Integer version;
+}
+```
+
+엔티티를 수정할 때 마다, 버전이 하나씩 증가한다. 
+그리고, 엔티티를 수정할 때 조회 시점의 버젼과 수정 시점의 버젼이 다르면 예외가 발생한다.
+그래서, 버전 정보를 사용하면 최초 커밋만 인정된다.
+
+다음 그림으로 보자.
+
+1. Transaction 01 과 Transaction 02 가 조회한다.
+2. Transaction 02 가 title 을 B 로 수정하고 커밋한다.
+3. Version 이 2 로 증가한다.
+4. Transaction 01 이 title 을 C 로 수정하고 커밋하려는 순간, 예외가 발생한다.
+
+![](/image/jpa-lock-version.png)
+
+## Version 비교 방법
+
+JPA 는 버젼 정보를 어떻게 비교할까 ?
+
+1. 엔티티를 수정하고 트랜잭션을 커밋한다.
+2. 영속성 컨텍스트를 flush 하면서, 아래와 같은 update query 를 실행한다.
+   ```sql
+      UPDATE Person
+      SET
+         TITLE = ?
+         VERSION = ? (version + 1 증가)
+      WHERE
+         ID = ? 
+         AND VERSION = ? 
+   ```
+3. DB 의 버젼이 이미 증가해서 WHERE 문의 VERSION 값이 다르면 수정할 대상이 없기 때문에, JPA 가 예외를 던진다.
+
+## JPA Lock
+
+> JPA 에서 추천하는 전략 : READ COMMITTED 트랜잭션 격리 수준 + 낙관적 버전 관리 ( 두 번의 갱신 내역 분실 문제 예방 )
+
+JPA 가 제공하는 Lock Option 은 javax.persistence.LockModeType 에 정의되어 있다.
+
+## JPA 낙관적 락
+
+JPA 낙관적 락을 사용하려면 @Version 이 있어야한다.
+낙관적 락의 옵션을 하나씩 보자.
+
+### NONE 
+
+Lock Option 을 정의하지 않아도 엔티티에 @Version 을 붙인 필드가 있으면 적용된다.
+조회 시점부터 수정 시점까지를 보장하여, Second Lost Updates Problem 을 에방한다.
+
+### OPTIMISTIC
+
+엔티티를 조회만 해도 버젼을 체크한다. 
+즉, 한 번 조회한 엔티티는 트랜잭션을 종료할 때까지 다른 트랜잭션에서 변경하지 않음을 보장한다.
+트랜잭션을 커밋할 때 버전 정보를 조회해서 (SELECT) 현재 엔티티의 버젼과 같은지 검증한다.
+NONE Option 은 엔티티를 수정해야 버전 정보를 확인하지만, OPTIMISTIC Option 은 엔티티 수정 없이 조회만 해도 버젼을 확인한다. 
+
+![](/image/jpa-lock-version-optimistic.png)
+
+### OPTIMISTIC_FORCE_INCREMENT
+
+데이터를 수정하지 않아도 트랜잭션을 커밋할 때 버젼 정보가 증가한다.
+
+![](/image/jpa-lock-version-optimistic-force.png)
+
+## JPA 비관적 락
+
+JPA 비관적 락은 DB 트랜잭션 락 메커니즘에 의존한다.
+비관적 락을 사용하면, 락을 획들할 때까지 트랜잭션이 대기한다.
+무한정 대기할 수 없으므로 타임아웃을 줄 수 있다.
+
+비관적 락의 옵션을 간단 보자.
+
+### PESSIMISTIC_WRITE
+
+비관적 락이면, 일반적으로 이 옵션이 많이 사용된다.
+DB select for update 를 사용해서 락을 건다.
+lock 이 걸린 로우는 다른 트랜잭션이 수정할 수 없다.
+
+### PESSIMISTIC_READ
+
+데이터를 읽기만 하고 수정하지 않는 용도로 락을 건다.
+
+### PESSIMISTIC_FORCE_INCREMENT
+
+비관적 락이지만 버젼 정보를 강제로 증가시킨다.
+
+## 1차 캐쉬
+
+영속성 컨텍스트 범위의 캐쉬이다.
+
+![](/image/jpa-first-level-cache.png)
+
+## 2차 캐쉬
+
+애플리케이션 범위의 캐쉬이다. 애플리케이션이 종료될 때까지 캐쉬가 유지된다.
+예를 들면, EHCACHE 를 2차 캐쉬로 사용할 수 있다. 
+
+![](/image/jpa-second-level-cache.png)
+
+2차 캐쉬는 캐쉬한 객체의 복사본을 만들어서 반환한다. 왜일까 ?
+만약 캐쉬한 객체를 그대로 반환하면, 여러 곳에서 같은 객체를 동시에 수정하는 문제가 발생할 수 있다.
+이 문제를 해결하기 위해, 락을 걸면 동시성이 떨어질 수 있다.
+그래서, 객체를 복사해서 반환한다.
+
+
 
 ---
 자바 ORM 표준 프로그래밍 <김영한>
