@@ -171,5 +171,81 @@ query.setHint("org.hibernate.readOnly", true)
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 ```
 
+## 배치 처리
+
+수백만 건의 데이터를 배치 처리할 때, 엔티티를 계속 조회하면 영속성 컨텍스트에 많은 엔티티가 쌓인다.
+그러면, 메모리 부족 오류가 발생할 것이다. 그래서, 적절한 단위로 영속성 컨텍스트를 초기화해아한다.
+
+### 등록 배치
+
+100만건의 엔티티를 DB 에 저장한다고 해보자.
+엔티티 100 건을 저장할 때마다 em.flush() 를 호출하고, em.clear() 할 수 있다.
+
+### 수정 배치
+
+100만건의 데이터를 조회해서 수정한다고 해보자. 한 번에 메모리에 올려둘 수 없어서,
+
+1. paging 
+   paging 처리 방법을 이용할 수 있다. 즉, 한 번에 100 건씩 페이징 쿼리로 조회하면서 엔티티를 수정하고 영속성 컨텍스트를 flush 하고 clear 한다.
+
+2. cursor 
+   cursor 를 이용할 수 있다. 하이버네이트는 scroll 이라는 이름으로 JDBC cursor 를 지원한다.
+
+## 트랜잭션을 지원하는 쓰기 지연
+
+```sql
+insert(member1); // INSERT INTO...
+insert(member2); // INSERT INTO...
+insert(member3); // INSERT INTO...
+insert(member4); // INSERT INTO...
+insert(member5); // INSERT INTO...
+
+commit();
+```
+
+네트워크 호출은 비용이 많이 드는 작업이다.
+위의 경우에, SQL 을 직접 다루면 한 번의 커밋과 다섯 번의 insert SQL 로, 총 여섯 번의 데이터베이스 통신을 한다.
+최적화 화려면 어떻게 해야할까 ? insert SQL 을 모아서 한 번에 데이터베이스에 보내면 된다. 
+JPA 는 flush 기능으로 이것이 가능하다.
+
+### SQL Batch
+
+```sql
+em.persist(new Member()); // 1
+em.persist(new Member()); // 2
+em.persist(new Member()); // 3
+em.persist(new Child());  // 4
+em.persist(new Member()); // 5
+em.persist(new Member()); // 6
+em.persist(new Member()); // 7
+```
+
+하이버네이트에서는, hibernate.jdbc.batch_size 속성의 값에 50 을 주면, 최대 50 건씩 모아서 SQL 배치를 실행한다. 그런데 주의할 점은, 같은 SQL 일 때만 유효하다. 
+예를 들어 위의 경우에, 1-3 을 모아서 SQL 배치 실행, 4 를 실행, 5-7 을 모아서 SQL 실행한다.
+
+### 식별자 생성 전략 IDENTITY
+
+엔티티의 식별자 생성 전략이 IDENTITY 이면, 쓰기 지연을 활용한 성능 최적화를 할 수 없다. 
+왜냐하면, 엔티티가 영속 상태가 되려면 식별자가 필요한데, 식별자를 구하려면 데이터베이스에 저장해야 구할 수 있어서 em.persist() 를 호출하면 바로 insert SQL 이 데이터베이스에 전달된다.
+
+## DB table row lock time 최소화
+
+트랜잭션을 지원하는 쓰기 지연의 본질적인 장점은, DB table row lock time 최소화이다.
+영속성 컨텍스를 flush 하기 전까지는 데이터베이스에 로우에 락을 걸지 않기 떄문이다.
+다음 로직을 보자.
+
+```sql
+update(member); // UPDATE SQL 
+logicA();
+logicB();
+commit();
+```
+
+JPA 를 사용하지 않고 SQL 을 직접 다루면, update(member); 를 호출할 때 UPDATE SQL 이 실행되면서 DB table row 에 lock 을 건다.
+이 lock 은 commit 을 호출될 때까지 유지된다. 그러면, 현재 수정 중인 데이터를 수정하려는 다른 트랜잭션은 lock 이 풀릴 때까지 기다려야한다.
+
+JPA 는 commit() 에서 UPDATE SQL 을 실행하고 바로 트랜잭션을 커밋한다. 즉, 데이터베이스 락에 걸리는 시간을 최소화한다.
+데이터베이스 락에 걸리는 시간을 최소화하면 뭐가 좋을까? 동시에 더 많은 트랜잭션을 처리할 수 있다.
+
 ---
 자바 ORM 표준 프로그래밍 <김영한>
