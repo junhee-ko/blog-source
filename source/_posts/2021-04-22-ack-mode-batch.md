@@ -11,19 +11,19 @@ Spring Kafka Listener Container 의 AckMode 가 BATCH 일 때,
 ## Offset
 
 commit 을 정확히 이해하기 위해, offset 의 개념부터 정리하자.
-Kakfa 는 파티션의 각각의 레코드에 대해 numerical offset 을 가지고 있다.
+Kafka 는 partition 의 각각의 record 에 대해 numerical offset 을 가지고 있다.
 offset 은 두 가지 역할을 한다. 
 
-1. 파티션의 레코드에 대한 unique identifier
-2. 파티션에 대한 consumer 의 위치
+1. partition 의 record 에 대한 unique identifier
+2. partition 에 대한 consumer 의 위치
 
 그래서, commit 된 position 은 마지막 offset 을 가리킨다.
 
 ## AckMode
 
-Spring Kakfa 에는 ContainerProperties 로 AckMode 일곱 가지가 있다.
+Spring Kafka 에는 ContainerProperties 로 AckMode 일곱 가지가 있다.
 offset commit 을 어떻게 할지에 대한 설정이다.
-이중 BATCH AckMode 는 어떻게 동작하는지 알아보자.
+일곱 가지 중에 BATCH AckMode 는 어떻게 동작하는지 알아보자.
 
 우선, BATCH AckMode 는 문서에 따르면 다음과 같이 정의되어 있다.
 
@@ -36,10 +36,10 @@ offset commit 을 어떻게 할지에 대한 설정이다.
 
 test 는 다음 순으로 진행하자.
 
-1. Create topic
-2. Consumer group 과 lag 을 확인하기 위해, Consumer app 을 실행한 뒤 down
-2. Producer app 을 실행하여 1000 개의 record 를 produce
-3. Consumer app 에 break point 를 걸고 실행하여, 언제 record 를 가져오고 commit 하는지 확인
+1. create topic
+2. consumer group 과 lag 을 확인하기 위해, consumer app 을 실행한 뒤 down
+2. producer app 을 실행하여 1000 개의 record 를 produce
+3. consumer app 에 break point 를 걸고 실행하여, 언제 record 를 가져오고 commit 하는지 확인
 
 ## Topic Create
 
@@ -47,7 +47,7 @@ Kafka package 에 있는 실행파일로 토픽을 생성하자.
 (물론, Zookeeper 와 Broker 는 구동된 상태이어야한다. 이 과정은 생략한다.)
 
 ```shell
-bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 2 --topic topic-for-commit-test
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic topic-for-commit-test
 ```
 
 다음과 같이 정상적으로 생성된 것이 확인된다.
@@ -67,7 +67,7 @@ public class MyConsumerConfig {
     ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
 
     factory.setConcurrency(1);
-    factory.getContainerProperties().setAckMode(AckMode.BATCH);
+    factory.getContainerProperties().setAckMode(AckMode.BATCH); // --- HERE
     factory.setConsumerFactory(new DefaultKafkaConsumerFactory<>(consumerConfigs()));
 
     return factory;
@@ -80,7 +80,7 @@ public class MyConsumerConfig {
     props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
-    props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 500000);
+    props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 500000); // --- HERE
 
     return props;
   }
@@ -89,8 +89,8 @@ public class MyConsumerConfig {
 
 주의해서 볼 점은,
 
-1. ContainerProperties 의 AckMode 를 BATCH 를 설정
-2. Consumer config 로 SESSION_TIMEOUT_MS_CONFIG 를 500000 로 설정
+1. AckMode 를 BATCH 를 설정
+2. SESSION_TIMEOUT_MS_CONFIG 를 500000 로 설정
 
 2번을 다시 보자. 
 SESSION_TIMEOUT_MS_CONFIG 의 default 값은 10000 이다. 이 의미는,
@@ -99,10 +99,10 @@ SESSION_TIMEOUT_MS_CONFIG 의 default 값은 10000 이다. 이 의미는,
 2. broker 는 이 consumer 를 failure 이라고 판단하고 rebalancing 을 한다는 것이다.
 
 이 값을 default 값 10000 이 아니라, 500000 으로 설정한 이유는 다음과 같다.
-consumr application 을 debug mode 로 실행하여 libe by line 으로 commit 을 어떻게 하는지 확인할 건데, 확인하는 시간 동안 heartbeats 를 보내지 않아 rebalancing 에 실패하게 되면 commit 에 실패하기 때문에 여유롭게 설정한 것이다.
+consumer app 을 debug mode 로 실행하여 line by line 으로 commit 을 어떻게 하는지 확인할 건데, 확인하는 시간 동안 heartbeats 를 보내지 않아 rebalancing 을 하게 되면 commit 에 실패하기 때문에 여유롭게 설정한 것이다.
 
 이제, consumer app 을 실행하자.
-"group-for-commit-test" consumer group 은 현재 lag 과 offset 이 0 인 것을 알 수 있다.  
+"group-for-commit-test" consumer group 은 현재 lag 과 offset 이 0 인 것이 확인된다.  
 
 ![](/image/kafka-consumer-group-offset.png)
 
@@ -110,7 +110,7 @@ debug 모드로 다시 consumer 를 실행하기 위해, 현재 실행중인 con
 
 ## Run Producer
 
-producer 는 1번~1000번의 number 를 각각 가지는 records 1000 개를 produce 한다.
+producer 는 records 1000 개를 produce 한다.
 
 ```java
 @Slf4j
@@ -149,7 +149,7 @@ public class MyProducer {
 }
 ```
 
-"group-for-commit-test" consumer group 은 현재 lag 1000, offset 이 1000 인 것이 확인된다.
+"group-for-commit-test" consumer group 은 현재 lag 1000, offset 1000 인 것이 확인된다.
 
 ![](/image/kafka-consumer-group-offset-after-produce.png)
 
@@ -170,7 +170,7 @@ poll 을 통해서 500 개의 record 를 가져온것이 확인된다.
 
 ![](/image/kakfa-consume-test-02.png)
 
-500 개의 record 각각을 handler (@KafkaListner method) 에게 전달하여 비즈니스 로직을 처리한다.
+500 개의 record 각각을 handler (@KafkaListener method) 에게 전달하여 비즈니스 로직을 처리한다.
 
 ![](/image/kakfa-consume-test-03.png)
 
@@ -225,7 +225,7 @@ max.poll.interval.ms 를 설정하지 않으면, 다음과 같이 default 로 30
 
 따라서, 
 
-1. max.poll.interval.ms 를 비즈니스 로직을 모두 처리하는 데 걸리는 시간 이상으로 조정하거나
+1. max.poll.interval.ms 를 비즈니스 로직을 모두 처리하는 데 걸리는 시간 이상으로 조정하거나,
 2. max.poll.records 를 max.poll.interval.ms 내에 처리할 수 있을 정도로 적게 설정해야한다.
 
 ---
