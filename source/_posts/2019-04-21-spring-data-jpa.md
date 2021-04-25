@@ -33,7 +33,7 @@ public class ItemRepository{
 ```
 
 위 코드를 보면, 회원 리포지토리와 상품 리포지토리가 하는 일이 비슷하다.
-이 문제를 해결하려면 제네릭과 상속을 적절히 사용해서 공통 부분을 처리하는 부모 클래스를 만들면 된다다. 이것을 보통 GenericDAO 라고 한다. 
+이 문제를 해결하려면 제네릭과 상속을 적절히 사용해서 공통 부분을 처리하는 부모 클래스를 만들면 된다. 이것을 보통 GenericDAO 라고 한다. 
 하지만 이것은, 공통 기능을 구현하는 부모 클래스에 종속되고 구현 클래스 상속이 가지는 단점이 있다. 
 
 ## 스프링 데이터 JPA
@@ -61,13 +61,91 @@ MemberRepository.findByUsername(...) 처럼 직접 작성한 공통으로 처리
 
 ![](/image/spring-data-jpa.png)
 
-## 공통 인터페이스
+## JpaRepository 계층 구조
 
-JpaRepository 인터페이스의 계층 구조는 다음과 같다.
+JpaRepository interface의 계층 구조를 직접 확인해보자.
+
+JpaRepository 는 org.springframework.data.jpa.repository 에 속해있다.
+JpaRepository 는 다시 PagingAndSortingRepository 를 상속하고 있다.
+
+![](/image/spring-data-jpa-repository.png)
+
+PagingAndSortingRepository interface 의 package 는 org.springframework.data.jpa.repository 가 아니라, org.springframework.data.repository 이다.
+PagingAndSortingRepository 는 다시 CrudRepository 를 상속한다.
+
+![](/image/spring-data-jpa-paging-and-sorting-repository.png)
+
+
+CrudRepository interface 의 package 는 org.springframework.data.jpa.repository 가 아니라, org.springframework.data.repository 이다.
+CrudRepository 는 다시 Repository 를 상속한다.
+
+![](/image/spring-data-jpa-crud-repository.png)
+
+
+Repository interface 의 package 는 org.springframework.data.jpa.repository 가 아니라, org.springframework.data.repository 이다.
+
+![](/image/spring-data-jpa-parent-repository.png)
+
+정리하면 다음 계층구조이다.
 
 ![](/image/spring-data-jpa-inheritance.png)
 
-## 쿼레 메소드 기능
+## 스프링 데이터 JPA 가 사용하는 구현체
+
+스프링 데이터 JPA 가 제공하는 공통 인터페이스는 org.springframework.data.jpa.repository.support.SimpleJpaRepository 클래스가 구현한다.
+
+```java
+@Repository
+@Transactional(readOnly = true)
+public class SimpleJpaRepository<T, ID extends Serializable> implements JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
+  ...
+}
+```
+
+직접 확인해보자.
+
+의존성을 다음과 같이 추가한다.
+
+```groovy
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+```
+
+그리고 Repository 를 정의한다.
+
+```java
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TestRepository extends JpaRepository<Test, Long> {
+  
+}
+```
+
+TestRepository 룰 출력해보자.
+
+```java
+@SpringBootTest
+class DemoSpringDataJpaApplicationTests {
+
+  @Autowired
+  private TestRepository testRepository;
+
+  @Test
+  void test() {
+    System.out.println(testRepository);
+  }
+}
+```
+
+결과는, SimpleJpaRepository 클래스 명이 출력된다.
+repository interface 를 정의했을 뿐인데, 구체 클래스가 주입이 되었다.
+
+![](/image/spring-data-simpe-jpa-repository.png)
+
+## Query Method
 
 스프링 데이터 JPA 가 제공하는 쿼리 메소드 기능은 크게 세 가지이다.
 
@@ -229,18 +307,5 @@ public class WebAppConfig{
   ...
 }
 ```
-
-## 스프링 데이터 JPA 가 사용하는 구현체
-
-스프링 데이터 JPA 가 제공하는 공통 인터페이스는 org.springframework.data.jpa.repository.support.SimpleJpaRepository 클래스가 구현한다.
-
-```java
-@Repository
-@Transactional(readOnly = true)
-public class SimpleJpaRepository<T, ID extends Serializable> implements JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
-  ...
-}
-```
-
 ---
 자바 ORM 표준 프로그래밍 <김영한>
