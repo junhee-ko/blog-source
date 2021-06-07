@@ -220,9 +220,11 @@ public class Rectangle implements Cloneable {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
+        // ------------- HERE
         Rectangle copy = (Rectangle) super.clone();
         copy.upperLeft = (Point) upperLeft.clone();
         copy.lowerRight = (Point) lowerRight.clone();
+        // ------------- HERE
         
         return copy;
     }
