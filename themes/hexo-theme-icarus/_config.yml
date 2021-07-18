@@ -106,28 +106,28 @@ navbar:
     # Navigation menu items
     menu:
         Home: /
-        Archives: /archives
-        Categories: /categories
+#        Archives: /archives
+#        Categories: /categories
 #        Tags: /tags
 #        About: /about
     # Links to be shown on the right of the navigation bar
-    links:
-        Download on GitHub:
-            icon: fab fa-github
-            url: 'https://github.com/ppoffice/hexo-theme-icarus'
+#    links:
+#        Download on GitHub:
+#            icon: fab fa-github
+#            url: 'https://github.com/ppoffice/hexo-theme-icarus'
 # Page footer configurations
 footer:
     # Links to be shown on the right of the footer section
-    links:
-        Creative Commons:
-            icon: fab fa-creative-commons
-            url: 'https://creativecommons.org/'
-        Attribution 4.0 International:
-            icon: fab fa-creative-commons-by
-            url: 'https://creativecommons.org/licenses/by/4.0/'
-        Download on GitHub:
-            icon: fab fa-github
-            url: 'https://github.com/ppoffice/hexo-theme-icarus'
+#    links:
+#        Creative Commons:
+#            icon: fab fa-creative-commons
+#            url: 'https://creativecommons.org/'
+#        Attribution 4.0 International:
+#            icon: fab fa-creative-commons-by
+#            url: 'https://creativecommons.org/licenses/by/4.0/'
+#        Download on GitHub:
+#            icon: fab fa-github
+#            url: 'https://github.com/ppoffice/hexo-theme-icarus'
 # Article related configurations
 article:
     # Code highlight settings
@@ -142,16 +142,16 @@ article:
     # Whether to show estimated article reading time
     readtime: false
     # Article licensing block
-    licenses:
-        Creative Commons:
-            icon: fab fa-creative-commons
-            url: 'https://creativecommons.org/'
-        Attribution:
-            icon: fab fa-creative-commons-by
-            url: 'https://creativecommons.org/licenses/by/4.0/'
-        Noncommercial:
-            icon: fab fa-creative-commons-nc
-            url: 'https://creativecommons.org/licenses/by-nc/4.0/'
+#    licenses:
+#        Creative Commons:
+#            icon: fab fa-creative-commons
+#            url: 'https://creativecommons.org/'
+#        Attribution:
+#            icon: fab fa-creative-commons-by
+#            url: 'https://creativecommons.org/licenses/by/4.0/'
+#        Noncommercial:
+#            icon: fab fa-creative-commons-nc
+#            url: 'https://creativecommons.org/licenses/by-nc/4.0/'
 # Search plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search/
 search:
@@ -161,46 +161,46 @@ search:
 comment:
     type: disqus
     # Disqus shortname
-    shortname: ''
+    shortname: junhee-ko
 # Donate plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/
-donates:
-    # "Afdian.net" donate button configurations
-    -
-        type: afdian
-        # URL to the "Afdian.net" personal page
-        url: ''
-    # Alipay donate button configurations
-    -
-        type: alipay
-        # Alipay qrcode image URL
-        qrcode: ''
-    # "Buy me a coffee" donate button configurations
-    -
-        type: buymeacoffee
-        # URL to the "Buy me a coffee" page
-        url: ''
-    # Patreon donate button configurations
-    -
-        type: patreon
-        # URL to the Patreon page
-        url: ''
-    # Paypal donate button configurations
-    -
-        type: paypal
-        # Paypal business ID or email address
-        business: ''
-        # Currency code
-        currency_code: USD
-    # Wechat donate button configurations
-    -
-        type: wechat
-        # Wechat qrcode image URL
-        qrcode: ''
+#donates:
+#    # "Afdian.net" donate button configurations
+#    -
+#        type:
+#        # URL to the "Afdian.net" personal page
+#        url: ''
+#    # Alipay donate button configurations
+#    -
+#        type:
+#        # Alipay qrcode image URL
+#        qrcode: ''
+#    # "Buy me a coffee" donate button configurations
+#    -
+#        type:
+#        # URL to the "Buy me a coffee" page
+#        url: ''
+#    # Patreon donate button configurations
+#    -
+#        type:
+#        # URL to the Patreon page
+#        url: ''
+#    # Paypal donate button configurations
+#    -
+#        type:
+#        # Paypal business ID or email address
+#        business: ''
+#        # Currency code
+#        currency_code: USD
+#    # Wechat donate button configurations
+#    -
+#        type:
+#        # Wechat qrcode image URL
+#        qrcode: ''
 # Share plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share/
 share:
-    type: sharethis
+    type:
     # URL to the ShareThis share plugin script
     install_url: ''
 # Sidebar configurations.
@@ -209,11 +209,11 @@ sidebar:
     # Left sidebar configurations
     left:
         # Whether the sidebar sticks to the top when page scrolls
-        sticky: false
+        sticky: true
     # Right sidebar configurations
     right:
         # Whether the sidebar sticks to the top when page scrolls
-        sticky: false
+        sticky: true
 # Sidebar widget configurations
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/
 widgets:
@@ -281,7 +281,7 @@ widgets:
     # Recent posts widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position:
+        position: left
         type: recent_posts
     # Archives widget configurations
     -
