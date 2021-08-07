@@ -223,4 +223,4 @@ fun readNumber(reader: BufferedReader) {
 ```
 
 ---
-Kotlin IN ACTION <드미트리 제메로프, 스베트라나 이사코바>
+Kotlin In Action <드미트리 제메로프, 스베트라나 이사코바>
