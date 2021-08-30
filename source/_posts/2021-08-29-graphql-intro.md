@@ -5,6 +5,8 @@ date:   2021-08-25
 categories: GraphQL
 ---
 
+GraphQL 이 무엇이고, REST 와의 차이는 무엇인지 정리한다.
+
 ## GraphQL 이란 
 
 GraphQL 은,
