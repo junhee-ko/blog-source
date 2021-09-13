@@ -1,7 +1,7 @@
 ---
 layout: post 
 title:  Primitive Type
-date:   2021-09-13 
+date:   2021-09-12 
 categories: Kotlin
 ---
 
