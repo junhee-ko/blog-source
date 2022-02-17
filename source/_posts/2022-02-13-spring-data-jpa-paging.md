@@ -153,4 +153,5 @@ internal fun `List 를 return 하면, count query 가 발생하지 않는다`() 
 ![](/image/spring-data-jpa-paging-not-count-query.png)
 
 ---
-https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.special-parameters
+- https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.special-parameters
+- https://github.com/junhee-ko/spring-data-jpa-paging
