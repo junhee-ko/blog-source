@@ -242,6 +242,37 @@ val user3: User? = repo.user
 2. 자바를 직접 조작할 수 있으면, @Nullable 이나 @NotNull 을 붙여셔 사용해야한다.
 3. 플랫폼 타입이 다른 곳에서 사용되는 것은 항상 위험을 내포하므로, 가능하면 제거해라.
 
+플랫폼 타입을 사용할 때, 발생할 수 있는 문제를 보자.
+
+```java
+public class JavaClass {
+    public String getValue(){
+        return null;
+    }
+}
+```
+
+```kotlin
+fun statedType() {
+    val value: String = JavaClass().value // NPE
+    println(value.length)
+}
+
+fun platformType() {
+  val value = JavaClass().value
+  println(value.length) // NPE
+}
+```
+
+statedType 과 platformType 모두 NPE 가 발생하지만, 발생 위치가 다르다.
+statedType() 은 자바에서 값을 가져올 때 발생하고, platformType() 은 값을 활용할 때 발생한다.
+
+statedType() 에서는 널이 아니라고 예상했지만, 널이 나온다는 것을 쉽게 알 수 있고 수정할 수 잇다.
+플랫폼 타입으로 지정된 변수는 nullable 일 수도 있고 아닐 수도 있다.
+그래서, 한 두 번 안전하게 사용해도 나중에는 NPE 를 발생시킬 수 있다. 그리고, 타입 검사기에가 검출도 못한다.
+이처럼, 플랫폼 타입은 더 많은 위험 가능성을 가지고 있다.
+
+
 ## inferred 타입으로 리턴하지 마라
 
 리턴 타입은 외부에서 확인할 수 있도록 명시적으로 지정하자.
