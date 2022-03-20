@@ -7,9 +7,61 @@ categories: Kotlin
 
 코틀린을 안전하게 사용하기 위한 방법들을 정리한다.
 
+- 가변성을 제한하라
+- 변수의 스코프를 최소화해라
+- 최대한 플랫폼 타입을 사용하지 마라
+- inferred 타입으로 리턴하지 마라
+- 예외를 활용해 코드에 제한을 걸어라
+- 사용자 정의 오류보다 표준 오류를 사용해라
+
 ## 가변성을 제한하라
 
-가변성을 제한할 수 있는 방법에는 다음이 있다.
+읽고 쓸 수 있는 프로퍼티인 var 를 사용하거나, mutable 객체를 사용하면 상태를 가질 수 있다.
+다음 예를 보자.
+
+```kotlin
+class InsufficientFunds : Exception()
+
+class BankAccount {
+    var balance = 0.0
+        private set
+
+    fun deposit(amount: Double) {
+      balance += amount
+    }
+
+    @Throws(InsufficientFunds::class)
+    fun withdraw(amount: Double) {
+      if (balance < amount) {
+        throw InsufficientFunds()
+      }
+
+      balance -= amount
+    }
+}
+
+@Test
+fun `BankAccount 에는 계좌에 돈이 얼마 있는지 나타내는 상태가 있다`() {
+    val account = BankAccount()
+    assertEquals(0.0, account.balance)
+
+    account.deposit(100.0)
+    assertEquals(100.0, account.balance)
+
+    account.withdraw(50.0)
+    assertEquals(50.0, account.balance)
+}
+```
+
+시간의 변화에 따라, 변하는 요소를 표현하는 것은 유용하다. 하지만,
+
+1. 프로그램을 이해하기 어렵고 디버깅이 어렵다.
+2. 시점에 따라 값이 달라져서, 코드의 실행을 예측하기 어렵다.
+3. 멀티 스레드 프로그램이면, 적절한 동기화가 필요하다.
+4. 모든 상태를 테스트해야해서, 더 많은 조합을 테스트해야한다.
+5. 상태 변경이 일어나면, 다른 부분에 알려야하는 경우가 있다. (ex) 리스트에 요소 추가되면, 전체 다시 정렬
+
+코틀린에서, 가변성을 제한할 수 있는 방법에는 다음이 있다.
 
 1. 읽기 전용 프로퍼티 val
 2. 가변 컬렉션과 읽기 전용 컬렉션 구분
@@ -71,8 +123,8 @@ fun `값을 호출할 때마다 사용자 정의 게터 호출`() {
 }
 ```
 
-val 은 스마트 캐스트 활용 가능하다.
-full1 은 값을 사용하는 시점의 first 에 따라서 다른 결과가 나올 수 있어서 스마트 캐스트를 할 수 없다.
+val 은 스마트 캐스트 활용이 가능하다.
+아래에서, full1 은 값을 사용하는 시점의 first 에 따라서 다른 결과가 나올 수 있어서 스마트 캐스트를 할 수 없다.
 
 ```kotlin
 val first: String? = "lets"
@@ -104,7 +156,7 @@ immutable 객체를 사용하면 다음과 같은 장점이 있다.
 
 1. 한 번 정의된 상태를 유지해서, 코드 이해가 쉽다.
 2. 공유할 때 충돌이 나지 않아서, 병렬 처리를 안전하게 할 수 있다.
-3. immutable 객체에 대한 참조가 변경되지 않아서, 쉽게 캐쉬 가능하다.
+3. immutable 객체에 대한 참조가 변경되지 않아서, 쉽게 캐쉬가 가능하다.
 4. 객체를 복사할 때 깊은 복사를 따로 하지 않아도 된다.
 5. 실행을 더 쉽게 에측할 수 있다.
 6. set or map 의 키로 사용할 수 있다.
@@ -122,7 +174,7 @@ class User(
 }
 
 @Test
-fun `자신을 수정한 새로운 객체를 만듦`() {
+fun `자신을 수정한 새로운 객체를 만든다`() {
     var user = User("junhee", "ko")
     user = user.withSurname("kooo")
     assertEquals("kooo", user.surname)
@@ -234,7 +286,7 @@ interface CarFactory {
 1. require 블록: argument 제한
 2. check 블록: 상태와 관련된 동작 제한
 3. assert 블록: 어떤 것이 true 인지 확인 (테스트 모드에서 동작)
-4. Elvis 연산자: return 또는 throw 와 함께 활용
+4. elvis 연산자: return 또는 throw 와 함께 활용
 
 ### Argument
 
@@ -326,6 +378,7 @@ fun sendEmail(person: Person, text: String){
 - IllegalArgumentException,
 - NoSuchElementException
 - UnsupportedOperationException
+- ...
 
 ---
 
