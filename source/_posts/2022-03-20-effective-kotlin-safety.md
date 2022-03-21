@@ -13,6 +13,7 @@ categories: Kotlin
 - inferred 타입으로 리턴하지 마라
 - 예외를 활용해 코드에 제한을 걸어라
 - 사용자 정의 오류보다 표준 오류를 사용해라
+- 결과 부족이 발생하면, null 과 Failure 를 사용해라
 
 ## 가변성을 제한하라
 
@@ -410,6 +411,65 @@ fun sendEmail(person: Person, text: String){
 - NoSuchElementException
 - UnsupportedOperationException
 - ...
+
+## 결과 부족이 발생하면, null 과 Failure 를 사용해라
+
+함수가 원하는 결과를 만들지 못할 때까 있다. 예를 들어,
+
+1. 인터넷 연결 문제로, 서버로부터 데이터를 읽어 들이지 못할 때
+2. 조건에 맞는 첫 번째 요소가 없을 때
+3. 텍스트를 파싱해서 객체를 만들려고 했는데, 텍스트 형식이 맞지 않을 때
+
+이를 처리하는 방법에는,
+
+1. null 을 리턴한다.
+2. 실패를 나타내는 sealed 클래스를 리턴한다. (일반적으로, Failure 라는 이름)
+3. 예외를 throw 한다.
+
+예외를 throw 하는 방식의 단점은,
+
+1. 코틀린의 모든 예외는 unchecked exception 이여서, 예외를 처리하지 않아 애플리케이션의 흐름을 중지시킬 수 있다.
+2. 예외는 예외적인 상황 처리를 위해 만들어져서, 명시적인 테스트만큼 빠르게 동작하지 않는다.
+3. try-catch 블록 내부에 코드를 배치하면, 컴파일러가 할 수 있는 최적화가 제한된다.
+
+반면에, null 이나 Failure 를 리턴하는 방법은 명시적으로 처리해야한다.
+또한, 애플리케이션의 흐름을 중지시키지도 않는다.
+
+따라서, 예측할 수 있는 범위의 오류는 null 이나 Failure 를 사용해라.
+예측하기 어려운 범위의 오류는 예외를 throw 해라.
+
+아래 예를 보자.
+
+```kotlin
+sealed class Result<out T>
+class Success<out T>(val result: T) : Result<T>()
+class Failure(val throwable: Throwable) : Result<Nothing>()
+class JsonParsingException : Exception()
+
+inline fun <reified T> String.readObjectOrNull(): T? {
+    if (incorrectSign) {
+      return null
+    }
+    return result
+}
+
+inline fun <reified T> String.readObject(): T? {
+    if (incorrectSign) {
+      return Failure(JsonParsingException())
+    }
+    return Success(result)
+}
+```
+
+이러한 오류는, 다루기 쉽고 놓치기 어렵다.
+safe call 이나 Elvis 연산자 같은 null-safety 기능을 활용할 수 있다.
+
+```kotlin
+val age = userText.readObjectOrNull<Person>()?.age ?: -1
+```
+
+그럼, 언제 null 을 사용하고 언제 sealed result 클래스를 사용해야할까 ?
+추가적인 정보를 전달해야한다면 sealed result 클래스 를, 그렇지 않다면 null 을 사용해라.
 
 ---
 
