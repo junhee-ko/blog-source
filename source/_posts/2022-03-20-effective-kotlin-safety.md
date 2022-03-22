@@ -14,6 +14,7 @@ categories: Kotlin
 - 예외를 활용해 코드에 제한을 걸어라
 - 사용자 정의 오류보다 표준 오류를 사용해라
 - 결과 부족이 발생하면, null 과 Failure 를 사용해라
+- 적절하게 null 을 처리해라
 
 ## 가변성을 제한하라
 
@@ -470,6 +471,124 @@ val age = userText.readObjectOrNull<Person>()?.age ?: -1
 
 그럼, 언제 null 을 사용하고 언제 sealed result 클래스를 사용해야할까 ?
 추가적인 정보를 전달해야한다면 sealed result 클래스 를, 그렇지 않다면 null 을 사용해라.
+
+## 적절하게 null 을 처리해라
+
+nullable type 은 세 가지 방법으로 처리할 수 있다.
+
+1. ?., smart casting, Elvis 연산자 를 활용
+2. 오류 throw
+3. nullable type 이 나오지 않도록 함수 or 프로퍼티를 refactoring
+
+
+### ?., smart casting, Elvis 연산자
+
+```kotlin
+// safe call
+printer?.print()
+
+// smart casting
+if (printer != null) printer.print()
+
+// Elvis
+val printerName = printer?.name ?: "Unnamed"
+```
+
+### 오류 throw
+
+개발자가 "당연히 그럴 것이다" 라고 생각할 수 있는 부분이 있고,
+이 부분에서 문제가 발생하면 개발자에게 오류를 강제로 발생시켜주자.
+requireNotNull, checkNotNull, throw, !! 등을 사용할 수 있다.
+
+```kotlin
+fun process(user: User) {
+    requireNotNull(user.name)
+    checkNotNull(context)
+    val network = getNetwork(context) ?: throw NoInternetConnection()
+    network.getData { data, userData -> show(data!!, userData!!) }
+}
+```
+
+### !! (not-null assertion) 은 피해라
+
+nullable 을 처리할 때 가장 간단한 방법은 not-null assertion 을 사용하는 것이다.
+!! 는 타입이 nullable 이지만, null 이 나오지 않는다고 확신할 때 사용된다.
+하지만, 현재 확실하다고 미래에도 확실한 것은 아니다.
+!! 를 사용하면 자바에서 nullable 을 처리할 때 발생할 수 있는 문제가 그대로 발샐한다.
+
+### 의미없는 nullability 는 피해라
+
+nullability 는 어떻게든 적절하게 처리해야해서, 추가 비용이 발생한다.
+따라서 필요한 경우가 아니라면, nullability 를 피하자.
+
+nullability 를 피할 수 있는 몇 가지 방법으로,
+
+1. 클래스에서 nullability 에 따라 여러 함수를 제공할 수 있다. (ex) List<T> 의 get(), getOrNull()
+2. 어떤 값이 클래스 생성 이후에 설정된다는 보장이 있으면, "lateinit property" or "notNull delegate" 를 사용해라.
+3. collection 의 element 가 부족하다는 것을 나타내려면, empty collection 을 사용해라.
+
+### lateinit property
+
+lateinit 은 프로퍼티를 처음 사용하기 전에, 반드시 초기화될 것이라고 예상될 때 사용된다.
+메서드 호출에 명확한 순서가 있을 경우에 사용될 수 있다.
+다음을 보자.
+
+```kotlin
+class Test {
+    private var dao: UserDao? = null
+    private var controller: UserController? = null
+
+    @BeforeEach
+    fun init() {
+        dao = mockk()
+        controller = UserController(dao!!)
+    }
+    @Test
+    fun test(){
+      controller!!.doSth()
+    }
+}
+```
+
+controller 를 nullable 에서 null 이 아닌 것으로 타입 변환하고 있다.
+테스트 전에 설정될 것이 명확하기 때문에, 의미 없는 코드라고 할 수 있다.
+그래서 다음처럼 해결함으로써, !! 연산자로 unpack 하지 않아도 된다.
+
+```kotlin
+class Test {
+    private lateinit var dao: UserDao
+    private lateinit var controller: UserController
+
+    @BeforeEach
+    fun init() {
+        dao = mockk()
+        controller = UserController(dao!!)
+    }
+    @Test
+    fun test(){
+      controller.doSth()
+    }
+}
+```
+
+### notNull delegate
+
+JVM 에서 Int, Long, Double, Boolean 같은 기본 타입으로 초기화해야하는 경우에
+Delegates.notNull 을 사용할 수 있다.
+
+```kotlin
+class DoctorActivity: Activity() {
+    private var doctorId: Int by Delegates.notNull()
+    private var fromNotification: Boolean by Delegates.notNull()
+
+    override fun onCreate(...){
+        ...
+        doctorId = intent.extras.getInt(DOCTOR_ID_ARG)
+        fromNotification = intent.extras.getBoolean(FROM_NOTIFICATION_ARG)
+    }
+
+}
+```
 
 ---
 
