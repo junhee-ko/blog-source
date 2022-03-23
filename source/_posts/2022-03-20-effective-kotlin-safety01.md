@@ -1,20 +1,17 @@
 ---
 layout: post
-title: Effective Kotlin - Safety
+title: Effective Kotlin - Safety 1
 date: 2022-03-20
 categories: Kotlin
 ---
 
-코틀린을 안전하게 사용하기 위한 방법들을 정리한다.
+코틀린을 안전하게 사용하기 위한 방법을 정리한다.
 
 - 가변성을 제한하라
 - 변수의 스코프를 최소화해라
 - 최대한 플랫폼 타입을 사용하지 마라
 - inferred 타입으로 리턴하지 마라
 - 예외를 활용해 코드에 제한을 걸어라
-- 사용자 정의 오류보다 표준 오류를 사용해라
-- 결과 부족이 발생하면, null 과 Failure 를 사용해라
-- 적절하게 null 을 처리해라
 
 ## 가변성을 제한하라
 
@@ -61,7 +58,7 @@ fun `BankAccount 에는 계좌에 돈이 얼마 있는지 나타내는 상태가
 2. 시점에 따라 값이 달라져서, 코드의 실행을 예측하기 어렵다.
 3. 멀티 스레드 프로그램이면, 적절한 동기화가 필요하다.
 4. 모든 상태를 테스트해야해서, 더 많은 조합을 테스트해야한다.
-5. 상태 변경이 일어나면, 다른 부분에 알려야하는 경우가 있다. (ex) 리스트에 요소 추가되면, 전체 다시 정렬
+5. 상태가 변경되면, 다른 부분에 알려야하는 경우가 있다. (ex) 리스트에 요소 추가되면, 전체 다시 정렬
 
 코틀린에서, 가변성을 제한할 수 있는 방법에는 다음이 있다.
 
@@ -137,7 +134,7 @@ val full2: String? = first?.let { "$it $second" }
 
 @Test
 fun `val 은 스마트 캐스트 활용 가능`() {
-    if(full1 != null){
+    if (full1 != null){
         println(full1.length) // Smart cast to 'String' is impossible, because 'full1' is a property that has open or custom getter
     }
 
@@ -267,11 +264,12 @@ fun platformType() {
 ```
 
 statedType 과 platformType 모두 NPE 가 발생하지만, 발생 위치가 다르다.
-statedType() 은 자바에서 값을 가져올 때 발생하고, platformType() 은 값을 활용할 때 발생한다.
+- statedType() 은 자바에서 값을 가져올 때 발생하고
+- platformType() 은 값을 활용할 때 발생한다.
 
-statedType() 에서는 널이 아니라고 예상했지만, 널이 나온다는 것을 쉽게 알 수 있고 수정할 수 잇다.
+statedType() 에서는 널이 아니라고 예상했지만, 널이 나온다는 것을 쉽게 알 수 있고 수정할 수 있다.
 플랫폼 타입으로 지정된 변수는 nullable 일 수도 있고 아닐 수도 있다.
-그래서, 한 두 번 안전하게 사용해도 나중에는 NPE 를 발생시킬 수 있다. 그리고, 타입 검사기에가 검출도 못한다.
+한 두 번 안전하게 사용해도 나중에는 NPE 를 발생시킬 수 있고, 타입 검사기가 검출도 못한다.
 이처럼, 플랫폼 타입은 더 많은 위험 가능성을 가지고 있다.
 
 
@@ -361,7 +359,8 @@ fun pop(num: Int = 1): List<T> {
 
 테스트할 때만 활성화되므로, 오류가 발생해도 사용자는 알 수 없다.
 그래서, 심각한 오류라면 check 를 사용하는 것이 좋다.
-그리고, assert 를 활용하더라도 여전히 단위 테스트는 작성해야한다. assert 는 양념처럼 사용해라.
+그리고, assert 를 활용하더라도 여전히 단위 테스트는 작성해야한다.
+assert 는 양념처럼 사용해라.
 
 ### nullability 와 스마트 캐스팅
 
@@ -401,192 +400,6 @@ fun sendEmail(person: Person, text: String){
       log("Email not send, no email address")
       return
     }
-}
-```
-
-## 사용자 정의 오류보다 표준 오류를 사용해라
-
-표준 라이브러리의 오류는 많은 개발자가 알고 있기 때문에, 이를 재사용하는 것이 좋다.
-다른 사람들이 API 를 더 쉽게 배우고 이해할 수 있다. 예를 들어,
-- IllegalArgumentException,
-- NoSuchElementException
-- UnsupportedOperationException
-- ...
-
-## 결과 부족이 발생하면, null 과 Failure 를 사용해라
-
-함수가 원하는 결과를 만들지 못할 때까 있다. 예를 들어,
-
-1. 인터넷 연결 문제로, 서버로부터 데이터를 읽어 들이지 못할 때
-2. 조건에 맞는 첫 번째 요소가 없을 때
-3. 텍스트를 파싱해서 객체를 만들려고 했는데, 텍스트 형식이 맞지 않을 때
-
-이를 처리하는 방법에는,
-
-1. null 을 리턴한다.
-2. 실패를 나타내는 sealed 클래스를 리턴한다. (일반적으로, Failure 라는 이름)
-3. 예외를 throw 한다.
-
-예외를 throw 하는 방식의 단점은,
-
-1. 코틀린의 모든 예외는 unchecked exception 이여서, 예외를 처리하지 않아 애플리케이션의 흐름을 중지시킬 수 있다.
-2. 예외는 예외적인 상황 처리를 위해 만들어져서, 명시적인 테스트만큼 빠르게 동작하지 않는다.
-3. try-catch 블록 내부에 코드를 배치하면, 컴파일러가 할 수 있는 최적화가 제한된다.
-
-반면에, null 이나 Failure 를 리턴하는 방법은 명시적으로 처리해야한다.
-또한, 애플리케이션의 흐름을 중지시키지도 않는다.
-
-따라서, 예측할 수 있는 범위의 오류는 null 이나 Failure 를 사용해라.
-예측하기 어려운 범위의 오류는 예외를 throw 해라.
-
-아래 예를 보자.
-
-```kotlin
-sealed class Result<out T>
-class Success<out T>(val result: T) : Result<T>()
-class Failure(val throwable: Throwable) : Result<Nothing>()
-class JsonParsingException : Exception()
-
-inline fun <reified T> String.readObjectOrNull(): T? {
-    if (incorrectSign) {
-      return null
-    }
-    return result
-}
-
-inline fun <reified T> String.readObject(): T? {
-    if (incorrectSign) {
-      return Failure(JsonParsingException())
-    }
-    return Success(result)
-}
-```
-
-이러한 오류는, 다루기 쉽고 놓치기 어렵다.
-safe call 이나 Elvis 연산자 같은 null-safety 기능을 활용할 수 있다.
-
-```kotlin
-val age = userText.readObjectOrNull<Person>()?.age ?: -1
-```
-
-그럼, 언제 null 을 사용하고 언제 sealed result 클래스를 사용해야할까 ?
-추가적인 정보를 전달해야한다면 sealed result 클래스 를, 그렇지 않다면 null 을 사용해라.
-
-## 적절하게 null 을 처리해라
-
-nullable type 은 세 가지 방법으로 처리할 수 있다.
-
-1. ?., smart casting, Elvis 연산자 를 활용
-2. 오류 throw
-3. nullable type 이 나오지 않도록 함수 or 프로퍼티를 refactoring
-
-
-### ?., smart casting, Elvis 연산자
-
-```kotlin
-// safe call
-printer?.print()
-
-// smart casting
-if (printer != null) printer.print()
-
-// Elvis
-val printerName = printer?.name ?: "Unnamed"
-```
-
-### 오류 throw
-
-개발자가 "당연히 그럴 것이다" 라고 생각할 수 있는 부분이 있고,
-이 부분에서 문제가 발생하면 개발자에게 오류를 강제로 발생시켜주자.
-requireNotNull, checkNotNull, throw, !! 등을 사용할 수 있다.
-
-```kotlin
-fun process(user: User) {
-    requireNotNull(user.name)
-    checkNotNull(context)
-    val network = getNetwork(context) ?: throw NoInternetConnection()
-    network.getData { data, userData -> show(data!!, userData!!) }
-}
-```
-
-### !! (not-null assertion) 은 피해라
-
-nullable 을 처리할 때 가장 간단한 방법은 not-null assertion 을 사용하는 것이다.
-!! 는 타입이 nullable 이지만, null 이 나오지 않는다고 확신할 때 사용된다.
-하지만, 현재 확실하다고 미래에도 확실한 것은 아니다.
-!! 를 사용하면 자바에서 nullable 을 처리할 때 발생할 수 있는 문제가 그대로 발샐한다.
-
-### 의미없는 nullability 는 피해라
-
-nullability 는 어떻게든 적절하게 처리해야해서, 추가 비용이 발생한다.
-따라서 필요한 경우가 아니라면, nullability 를 피하자.
-
-nullability 를 피할 수 있는 몇 가지 방법으로,
-
-1. 클래스에서 nullability 에 따라 여러 함수를 제공할 수 있다. (ex) List<T> 의 get(), getOrNull()
-2. 어떤 값이 클래스 생성 이후에 설정된다는 보장이 있으면, "lateinit property" or "notNull delegate" 를 사용해라.
-3. collection 의 element 가 부족하다는 것을 나타내려면, empty collection 을 사용해라.
-
-### lateinit property
-
-lateinit 은 프로퍼티를 처음 사용하기 전에, 반드시 초기화될 것이라고 예상될 때 사용된다.
-메서드 호출에 명확한 순서가 있을 경우에 사용될 수 있다.
-다음을 보자.
-
-```kotlin
-class Test {
-    private var dao: UserDao? = null
-    private var controller: UserController? = null
-
-    @BeforeEach
-    fun init() {
-        dao = mockk()
-        controller = UserController(dao!!)
-    }
-    @Test
-    fun test(){
-      controller!!.doSth()
-    }
-}
-```
-
-controller 를 nullable 에서 null 이 아닌 것으로 타입 변환하고 있다.
-테스트 전에 설정될 것이 명확하기 때문에, 의미 없는 코드라고 할 수 있다.
-그래서 다음처럼 해결함으로써, !! 연산자로 unpack 하지 않아도 된다.
-
-```kotlin
-class Test {
-    private lateinit var dao: UserDao
-    private lateinit var controller: UserController
-
-    @BeforeEach
-    fun init() {
-        dao = mockk()
-        controller = UserController(dao!!)
-    }
-    @Test
-    fun test(){
-      controller.doSth()
-    }
-}
-```
-
-### notNull delegate
-
-JVM 에서 Int, Long, Double, Boolean 같은 기본 타입으로 초기화해야하는 경우에
-Delegates.notNull 을 사용할 수 있다.
-
-```kotlin
-class DoctorActivity: Activity() {
-    private var doctorId: Int by Delegates.notNull()
-    private var fromNotification: Boolean by Delegates.notNull()
-
-    override fun onCreate(...){
-        ...
-        doctorId = intent.extras.getInt(DOCTOR_ID_ARG)
-        fromNotification = intent.extras.getBoolean(FROM_NOTIFICATION_ARG)
-    }
-
 }
 ```
 
