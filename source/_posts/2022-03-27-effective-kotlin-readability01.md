@@ -11,8 +11,6 @@ categories: Kotlin
 - 연산자 오버로드할 때는 의미에 맞게 사용해라
 - Unit? 을 리턴하지 마라
 - 변수 타입이 명확하지 않으면 확실하게 지정해라
-- 리시버를 명시적으로 참조해라
-- 프로퍼티는 동작이 아니라, 상태를 나타내야한다
 
 ## 가독성을 목표로 설계해라
 
@@ -209,78 +207,6 @@ val data = getSomeData()
 // B
 val data: UserData = getSomeData()
 ```
-
-## 리시버를 명시적으로 참조해라
-
-짧게 적을 수 있다는 이유만으로, 리시버를 제거하지 말자.
-여러 개의 리시버가 있으면, 리시버를 명시적으로 적어줘야한다.
-그러면, 어떤 리시버의 함수인지를 명확하게 알 수 있어서 가독성이 향상된다.
-
-예를 들어 apply, with, run 함수를 사용할 때가 있다.
-
-```kotlin
-class Node(val name: String) {
-    fun makeChild(childName: String) =
-        create("$name.$childName")
-            .also { print("Created ${it?.name}")} // Created parent.child
-
-    fun create(name: String): Node? = Node(name)
-}
-
-val node = Node("parent")
-node.makeChild("child")
-```
-
-## 프로퍼티는 동작이 아니라, 상태를 나타내야한다
-
-프로퍼티는 개념적으로,
-
-- val 의 경우에 getter
-- var 의 경우에 getter 와 setter 를 나타낸다.
-
-그래서 프로퍼티를 정의하여 오버라이드 가능하다.
-
-```kotlin
-open calss Computer {
-    open val answer: Long = 42
-}
-
-class AppleComputer : SuperComputer() {
-    override val answer: Long = 99
-}
-```
-
-프로퍼티는 접근자를 나타내기 때문에, 함수 대신 사용할 수 있다.
-하지만, 완전히 대체해서 사용하지 말아야한다.
-
-```kotlin
-val Tree<Int>.sum: Int
-    get() = when (this) {
-        is Leaf -> value
-        is Node -> left.sum + right.sum
-    }
-```
-
-위에서의 sum 프로퍼티는 모든 요소를 반복 처리하므로, 알고리즘 동작이라고 할 수 있다.
-큰 컬렉션의 경우 많은 계산량이 필요할 수 있다.
-그런데, 이런 getter 에는 많은 계산량이 필요하다고 예상하지 않는다.
-그래서, 이런 처리는 아래와 같이 프로퍼티가 아니라 함수로 구현해야한다.
-
-```kotlin
-fun Tree<Int>.sum(): Int = when (this) {
-    is Leaf -> value
-    is Node -> left.sum() + right.sum()
-}
-```
-
-프로퍼티는 상태를 추출, 설정할 때 사용하자.
-그러면 언제 프로퍼티 대신 함수를 사용해야할까 ?
-
-1. 연산 비용이 높거나, 복잡도가 O(1) 보다 큰 경우
-2. 비즈니스 로직을 포함한 경우
-3. 결정적이지 않은 경우: 같은 동작을 연속 두 번 했는데 다른 값이 나올 수 있으면 함수를 사용하자.
-4. 변환의 경우: 변환은 관습적으로 Int.toDouble() 같은 변환 함수를 사용한다.
-5. getter 에서 프로퍼티 상태 변경이 일어나는 경우
 
 ---
 
