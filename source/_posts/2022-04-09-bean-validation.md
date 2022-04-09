@@ -61,7 +61,7 @@ Spring Boot 에서 bean validation 을 활용하는 간단한 예를 보자.
 
 ![](/image/depdendency-spring-boot-starter-validation.png)
 
-그러면, 아래처럼 hibernate-validator 가 추가된는 것이 확인된다.
+그러면, 아래처럼 hibernate-validator 가 추가되는 것이 확인된다.
 
 ![](/image/depdendency-hibernate-validator.png)
 
@@ -118,12 +118,42 @@ class UserController {
 data class UserSignUp(
   val name: String,
 
+  @Max(value = 100)
+  val age: Long
+)
+```
+
+여전희 정상적으로 "success" 가 응답이 된다.
+"@Max(value = 100)" 를 추가했는데, 왜 validation 이 동작하지 않는걸까 ?
+
+아래 문서에 정의되어 있는 것처럼, bean constraints 는 네 가지 타입이 있다.
+https://docs.jboss.org/hibernate/validator/8.0/reference/en-US/html_single/#section-declaring-bean-constraints
+
+- field constraints
+- property constraints
+- container element constraints
+- class constraints
+
+그런데, 위 kotlin 코드의 bytecode 를 decompile 한 결과를 보면 아래와 같이 생성자의 파라미터에 "@Max(value = 100)" 가 추가되어있다.
+
+![](/image/bean-validation-annotation-at-constructor-params.png)
+
+따라서, field constraints 를 사용하기 위해, kotlin 의 @field 를 사용하자.
+
+```kotlin
+data class UserSignUp(
+  val name: String,
+
   @field:Max(value = 100)
   val age: Long
 )
 ```
 
-다음과 같이 400 error 를 응답받게 된다.
+다시 kotlin 코드의 bytecode 를 decompile 한 결과를 보면 아래와 같이 필드에 "@Max(value = 100)" 가 추가되어있다.
+
+![](/image/bean-validation-annotation-at-field.png)
+
+그리고 다시 요청을 하게 되면, 다음과 같이 400 error 를 응답받게 된다.
 
 ![](/image/with-bean-validation.png)
 
@@ -137,3 +167,5 @@ validation 이 실패했고, age 가 100 이하이어야 한다고 WARN 로깅�
 - https://jcp.org/en/jsr/detail?id=303
 - https://en.wikipedia.org/wiki/Metadata
 - https://beanvalidation.org
+- https://docs.jboss.org/hibernate/validator/8.0/reference/en-US/html_single/#section-declaring-bean-constraints
+- https://kotlinlang.org/docs/annotations.html#annotation-use-site-targets
