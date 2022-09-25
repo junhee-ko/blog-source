@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hexagonal Architecture-Usecase
+title: Hexagonal Architecture - Usecase
 date: 2022-09-18
 categories: Architecture
 ---
@@ -76,8 +76,8 @@ data class Account(
 3. 모델 상태를 조작
 4. 출력을 반환
 
-유스케이스는 일반적으로 비즈니스 규칙을을 충족하면,
-도메인 객체의 상태를 바꾼 뒤에 영속성 어뎁터를 통해 구현된 포트로, 상태를 전달해서 저장될 수 있게 한다.
+유스케이스는 일반적으로 비즈니스 규칙을 충족하면,
+도메인 객체의 상태를 바꾼 뒤에 영속성 어뎁터를 통해 구현된 포트로 상태를 전달해서 저장될 수 있게 한다.
 또한, 다른 outgoing 어뎁터를 호출할 수도 있다.
 
 마지막으로 outgoing 어뎁터에서 온 출력 값을, 유스케이스를 호출한 어뎁터로 반환할 출력 객체로 변환해서 반환한다.
@@ -130,7 +130,7 @@ data class SendMoneyCommand(
 }
 ```
 
-모든 파라미터가 not null 이어갸하고 송금액은 0 보다 커야한다.
+모든 파라미터가 not null 이어야하고 송금액은 0 보다 커야한다.
 
 SendMoneyCommand 는 유스케이스 API 의 일부이기 때문에 incoming port package 에 위치한다.
 그래서, 유효성 검증이 application core 에 남아 있지만, 유스케이스를 오염시키지 않는다.
