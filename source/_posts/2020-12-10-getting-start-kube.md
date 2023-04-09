@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[도커/쿠버네티스] 6장_쿠버네티스 시작하기"
+title: 쿠버네티스 오브젝트
 date: 2020-12-10
 categories: Container
 ---
@@ -9,25 +9,34 @@ Pod / Replica Set / Service / Deployment 오브젝트를 정리한다.
 
 ## 쿠버네티스의 고유 특징
 
-1. 모든 리소스는 오브젝트 형태로 관리된다.
-   컨테이너의 집합 (Pods), 컨테이너의 집합을 관리하는 컨트롤러 (Replica Set), 사용자 (Service Account), 노드 (Node) ... 등 하나의 오브젝트로 관리된다.
-   쿠버네티스에서 사용할 수 있는 오브젝트는 아래 명령어로 확인 가능하다.
+### 모든 리소스는 오브젝트 형태로 관리된다.
 
-   ```bash
-   kubectl api-resources
-   ```
+컨테이너의 집합 (Pods), 컨테이너의 집합을 관리하는 컨트롤러 (Replica Set), 사용자 (Service Account), 노드 (Node) ... 등 하나의 오브젝트로 관리된다.
+쿠버네티스에서 사용할 수 있는 오브젝트는 아래 명령어로 확인 가능하다.
 
-2. 명령어를 사용할 수 있지만, YAML 파일을 더 많이 사용한다.
-   kubectl 이라는 명령어로 쿠버네티스를 사용할 수 있지만,
-   YAML 파일로 컨테이너 뿐만 아니라 모든 리소스 오브젝트를 사용할 수 있다.
-   
-3. 여러 개의 컴포넌트로 구성되어 있다.
-   쿠버네티스 노드는 마스터 노드와 워커 노드로 나뉘어 있다.
-   마스터 노드는 클러스터를 관리하는 역할을 하고, 워커 노드에는 애플리케이션 컨테이너가 생성된다.
-   쿠버네티스는 도커를 포함한 많은 컴포넌트들이 도커 컨테이너로서 실행된다. 예를 들어,
-   마스터 노드에는 kube-apiserver, kube-controller-manager, kube-schueduler, coreDNS 등이 실행된다.
+### 명령어를 사용할 수 있지만, YAML 파일을 더 많이 사용한다.
 
-## Pod
+kubectl 이라는 명령어로 쿠버네티스를 사용할 수 있지만,
+YAML 파일로 컨테이너 뿐만 아니라 모든 리소스 오브젝트들에 사용될 수 있다.
+
+### 여러 개의 컴포넌트로 구성되어 있다.
+
+쿠버네티스 노드는 마스터 노드와 워커 노드로 나뉘어 있다.
+마스터 노드는 클러스터를 관리하는 역할을 하고, 워커 노드에는 애플리케이션 컨테이너가 생성된다.
+쿠버네티스는 도커를 포함한 많은 컴포넌트들이 도커 컨테이너로서 실행된다. 예를 들어,
+마스터 노드에는 kube-apiserver, kube-controller-manager, kube-schueduler, coreDNS 등이 실행된다.
+
+그리고, kubelet 이라는 에이전트가 모든 노드에 실행된다.
+kubelet 은 컨테이너의 생성/삭제 뿐만 아니라 마스터와 워커 노드 간 통신 역할을 담당한다.
+
+쿠버네티스 입장에서, 도커 데몬 또한 하나의 컴포넌트이다.
+도머 스웜 모드는 도커에 내장된 기능인 반면, 쿠버네티스는 그렇지 않다.
+오히려, 쿠버네티스가 도커를 이용하는 방식이다.
+
+## Pod: 컨테이너를 다루는 기본 단위
+
+도커 엔진에서는 기본 단위가 도커 컨테이너이고, 스웜 모드에서는 기본 단위가 여러 컨테이너로 구성된 서비스이다.
+쿠버네티스에서는 컨테이너 애플리케이션을 배포하기 위한 기본 단위로, 포드라는 개념을 사용한다.
 
 ![](/image/what-is-pod.png)
 
@@ -50,14 +59,14 @@ spec:
 
 위 YAML 파일은 아래 명령어로 쿠버네티스에 생성할 수 있다.
 
-```bash
+```script
 kubectl apply -f nginx-pod.yaml
 ```
 
 생성된 포드의 IP 는 외부에서 접근할 수 없기 때문에, 클러스터 내부에서만 접근할 수 있다.
 그래서, 클러스터의 노드 중 하나에 접속해서 Nginx 포드의 IP 로 HTTP 요청을 전송하면, Nginx 포드가 정상 실행중인 것을 알 수 있다.
 
-### Pod, Docker Container
+### Pod VS Docker Container
 
 ![](/image/pod-share-network-interface.png)
 
@@ -69,15 +78,16 @@ kubectl apply -f nginx-pod.yaml
 ### 하나의 Pod 는 하나의 완전한 애플리케이션
 
 Nginx 는 이 자체로 하나의 애플리케이션이다.
-그런데, 프로스나 로그를 수집해주는 프로세르가 Nginx 컨테이너와 함께 실행되어야 하는 경우가 있다.
+그런데, 프로세스나 로그를 수집해주는 프로세스가 Nginx 컨테이너와 함께 실행되어야 하는 경우가 있다.
 이렇게 포드에 정의된 부가적인 컨테이너를 Sidecar 컨테이너라고 한다.
 이 컨테이너는 포드 내의 다른 컨테이너와 네트워크 환경 등을 공유한다.
 그래서, 포드에 포함된 컨테이너들은 모두 같은 워커 노드에서 함께 실행된다.
 
-## Replica Set
+이러한 구조와 원리에 따라, 포드에 정의된 여러 컨테이너는 하나의 완전한 애플리케이션으로서 동작한다.
 
-레플리카셋은 일정 개수의 포드를 유지하는 컨트롤러이다.
-그렇다면, 왜 레플리카셋을 사용하는 걸까 ?
+## Replica Set: 일정 개수의 포드를 유지하는 컨트롤러
+
+레플리카셋을 사용하는 이유는,
 
 1. 정해진 수의 동일한 포드가 항상 실행되도록 관리를 해주기 때문
 2. 노드 장애 등의 이유로, 포드를 사용할 수 없다면 다른 노드에서 포드를 다시 생성해 주기 때문
@@ -103,7 +113,7 @@ spec:
   template: # 여기서부터, 포드 정의
     metadata:
       name: my-nginx-pod
-      labels: 
+      labels:
         app: my-nginx-pods-label # 라벨
     spec:
       containers:
@@ -115,7 +125,7 @@ spec:
 
 그리고, 아래 명령어로 레플리카셋을 생성한다.
 
-```bash
+```script
 kubectl apply -f replicaset-nginx.yaml
 ```
 
@@ -128,9 +138,9 @@ kubectl apply -f replicaset-nginx.yaml
 
 레플리카셋과 포드는, Label Selector 를 이용해 연결된다.
 레플리카셋은 spec.selector.matchLabel 에 정의된 라벨을 통해 생성해야할 포드를 찾는다.
-위 YAML 파일의 경우에, 
+위 YAML 파일의 경우에,
 
-1. app: my-nginx-pods-label 라벨을 가지는 포드의 개수가 replicas 항목에 정의된 숫자인 3 개와 일치하지 않으면
+1. "app: my-nginx-pods-label" 라벨을 가지는 포드의 개수가 replicas 항목에 정의된 숫자인 3 개와 일치하지 않으면
 2. 포드를 정의하는 template 항목 내용대로 포드를 생성한다.
 
 핵심은, 레플리카셋의 목적이 `일정 개수의 포드를 유지하는 것` 이라는 것이다.
@@ -138,7 +148,7 @@ kubectl apply -f replicaset-nginx.yaml
 1. 현재 포드의 개수가 replicas 에 설정된 값보다 적으면 포드를 더 생성하고
 2. 많으면 포드를 삭제한다.
 
-## Deployment
+## Deployment: 레플리카셋과 포드의 배포를 관리
 
 ![](/image/what-is-deployment.png)
 
@@ -171,7 +181,7 @@ spec:
 
 그리고 다음 명령어로 디플로이먼트를 생성한다.
 
-```bash
+```script
 kubectl apply -f deployment-nginx.yaml
 ```
 
@@ -189,20 +199,19 @@ kubectl apply -f deployment-nginx.yaml
 아래 명령어로,
 포드 탬플릿에 정의된 containers 항목의 nginx 라는 이름을 가진 컨테이너의 이미지를 nginx:1.11 로 변경하자.
 
-```bash
+```script
 kubectl set image deployment my-nginx-delpoyment nginx=nginx:1.11
 ```
 
 그러면,
 
 1. 새롭게 포드들이 3 개 생성이 되고
-2. 새로운 replicaset 이 생성된다. 
+2. 새로운 replicaset 이 생성된다.
 
 그리고, 이전 버전의 레플리카셋이 삭제되지 않고 남아있다.
-즉, 디플로이먼트는 포드의 정보가 변경되어 업데이트가 발생할 때,
-이전의 정보를 리비전으로 보존한다.
+즉, 디플로이먼트는 포드의 정보가 변경되어 업데이트가 발생할 때, 이전의 정보를 리비전으로 보존한다.
 
-## Service
+## Service: 포드를 연결하고 외부에 노출
 
 서비스 오브젝트는,
 
@@ -240,18 +249,19 @@ spec:
 
 그리고 서비스를 생성하자.
 
-```bash
+```script
 kubectl apply -f hostname-svc-clusterip.yaml
 ```
 
-그러면, 생성된 서비스의 IP:PORT 를 통해,
-서비스와 연결된 여러 포드에 자동으로 요청이 분산된다.
+그러면 생성된 서비스의 IP:PORT 를 통해, 서비스와 연결된 여러 포드에 자동으로 요청이 분산된다.
 
 ### NodePort
 
 ![](/image/nodeport-type.png)
 
 NodePort 타입의 서비스는, 클러스터 외부에서도 접근할 수 있다.
+모든 노드의 특정 포트를 개방해 서비스에 접근하는 방식이다.
+
 아래 내용으로 hostname-svc-nodeport.yaml 파일을 작성하자.
 
 ```yaml
@@ -271,7 +281,7 @@ spec:
 
 그리고 서비스를 생성하자.
 
-```bash
+```script
 kubectl apply -f hostname-svc-nodeport.yaml
 ```
 
@@ -286,9 +296,8 @@ kubectl apply -f hostname-svc-nodeport.yaml
 ![](/image/load-balancer-type.png)
 
 LoadBalancer 타입의 서비스 는 AWS, GCP 같은 클라우드 플랫폼 환경에서만 사용할 수 있다.
-NodePort 를 사용할 때는, 각 노드의 IP 를 알아야 포드에 접근할 수 있었지만
-LoadBalancer 타입의 서비스는 클라우드 플랫폼으로부터 도메인 이름과 IP 를 할당 받아
-더 쉽게 포드에 접근 가능하다.
+NodePort 를 사용할 때는, 각 노드의 IP 를 알아야 포드에 접근할 수 있었지만, LoadBalancer 타입의 서비스는 클라우드 플랫폼으로부터 도메인 이름과 IP 를 할당 받아 더 쉽게 포드에 접근 가능하다.
+
 아래 대로, hostname-svc-lb.yaml 파일을 생성하자.
 
 ```yaml
