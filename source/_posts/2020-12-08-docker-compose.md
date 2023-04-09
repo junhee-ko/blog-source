@@ -1,25 +1,26 @@
 ---
 layout: post
-title: "[도커/쿠버네티스] 4장_도커 컴포즈"
-date: 2020-12-09
+title: 도커 컴포즈
+date: 2020-12-08
 categories: Container
 ---
 
-## 도커 컴포즈 사용 이유
+## 도커 컴포즈를 사용하는 이유
 
 여러 개의 컨테이너로 구성된 웹 애플리케이션을 테스트하기 위해,
 아래처럼 웹 서버 컨테이너와 데이터베이스 컨테이너를 각각 생성해야한다.
 
-```bash
-docker run --name mysql -d jko/composetest:mysql mysqld
+```shell
+# docker run --name mysql -d jko/composetest:mysql mysqld
 
-docker run -d -p 80:80 \
+# docker run -d -p 80:80 \
 --link mysql:db --name web \
 jko/composetest:web apachectl -DFOREGROUND
 ```
 
 여러 개의 컨테이너를 하나의 서비스로 정의해 컨테이너 묶음으로 관리하면 편리할 것이다.
-그래서, Docker Compose 가 필요하다. 
+Docker Compose 는, 컨테이너를 시용한 서비스의 개발과 CI 를 위해 여러 개의 컨테이너를 하나의 프로젝트로서 다룰 수 있는 작업 환경을 제공한다.
+여러 컨테이너의 옵션과 환경을 정의한 파일을 읽어 컨테이너를 순차적으로 생성하는 방식으로 동작한다.
 
 ## 도커 컴포즈 사용
 
@@ -43,8 +44,8 @@ services: # 생성될 컨테이너를 묶어놓은 단위
 
 그리고 아래 명령어로, 컨테이너를 생성한다.
 
-```bash
-docker-comose up -d
+```shell
+# docker-comose up -d
 ```
 
 ## 도커 컴포즈 구성 단위
@@ -52,12 +53,15 @@ docker-comose up -d
 ![](/image/docker-compose-units.png)
 
 도커 컴포즈는, 컨테이너를 프로젝트 및 서비스 단위로 구분한다.
-프로젝트 이름은 기본적으로, docke-compose.yml 파일이 위치한 디렉토리 이름이다.
+하나의 프로젝트는 여러 서비스로 구성되고, 각 서비스는 여러 컨테이너로 구성된다.
+스웜 모드에서의 서비스처럼, 하나의 서비스에는 여러 컨테이너가 존재할 수 있다.
+
+프로젝트 이름은 기본적으로, docker-compose.yml 파일이 위치한 디렉토리 이름이다.
 현재 디렉토리 이름으로 된 프로젝트를 제어하는데,
 -p 옵션에 프로젝트 이름을 사용해 프로젝트 이름을 명시해서 제어할 수 있다.
 
-```bash
-docker-compose -p myproject up -d
+```shell
+# docker-compose -p myproject up -d
 ```
 
 ---
