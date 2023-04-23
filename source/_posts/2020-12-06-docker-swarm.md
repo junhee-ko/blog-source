@@ -2,7 +2,7 @@
 layout: post
 title: 도커 스웜
 date: 2020-12-06
-categories: Container
+categories: K8S
 ---
 
 ## 도커 스웜을 사용하는 이유

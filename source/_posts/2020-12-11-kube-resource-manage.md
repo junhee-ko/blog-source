@@ -2,7 +2,7 @@
 layout: post
 title: "[도커/쿠버네티스] 7장_쿠버네티스 리소스 관리와 설정"
 date: 2020-12-11
-categories: Container
+categories: K8S
 ---
 
 효율적으로 애플리케이션을 관리하기 위해 사용되는
