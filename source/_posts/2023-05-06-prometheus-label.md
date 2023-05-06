@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Instrumentation > Label
+title: Prometheus > Label
 date: 2023-05-06
 categories: Infrastructure
 ---
