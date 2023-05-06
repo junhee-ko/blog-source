@@ -2,7 +2,7 @@
 layout: post
 title: "쿠버네티스 리소스 관리와 설정"
 date: 2020-12-11
-categories: K8S
+categories: Infrastructure
 ---
 
 효율적으로 애플리케이션을 관리하기 위해 사용되는 다음 오브젝트를 정리한다.

@@ -2,7 +2,7 @@
 layout: post
 title: 도커 엔진
 date: 2020-12-05
-categories: K8S
+categories: Infrastructure
 ---
 
 ## 도커 이미지와 컨테이너

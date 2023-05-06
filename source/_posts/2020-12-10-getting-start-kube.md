@@ -2,7 +2,7 @@
 layout: post
 title: 쿠버네티스 오브젝트
 date: 2020-12-10
-categories: K8S
+categories: Infrastructure
 ---
 
 Pod / Replica Set / Service / Deployment 오브젝트를 정리한다.

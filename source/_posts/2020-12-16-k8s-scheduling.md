@@ -2,7 +2,7 @@
 layout: post
 title: "쿠버네티스 스케쥴링"
 date: 2020-12-15
-categories: K8S
+categories: Infrastructure
 ---
 
 스케쥴링이란, 컨테이너나 가상 머신 같은 인스턴스를 새로 생성할 때 어느 서버에 생성할 것인지 결정하는 것이다.

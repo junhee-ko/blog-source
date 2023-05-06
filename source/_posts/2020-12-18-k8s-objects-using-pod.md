@@ -2,7 +2,7 @@
 layout: post
 title: "Pod 를 사용하는 Objects"
 date: 2020-12-15
-categories: K8S
+categories: Infrastructure
 ---
 
 포드를 사용하는 상위 오브젝트에는 디플로이먼트 외에도 몇 가지가 더 있다.

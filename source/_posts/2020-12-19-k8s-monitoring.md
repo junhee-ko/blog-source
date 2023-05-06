@@ -2,7 +2,7 @@
 layout: post
 title: "쿠버네티스 모니터링"
 date: 2020-12-19
-categories: K8S
+categories: Infrastructure
 ---
 
 다음과 같은 상황에서 모니터링이 필요할 수 있다.

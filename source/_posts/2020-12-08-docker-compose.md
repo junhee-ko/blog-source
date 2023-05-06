@@ -2,7 +2,7 @@
 layout: post
 title: 도커 컴포즈
 date: 2020-12-08
-categories: K8S
+categories: Infrastructure
 ---
 
 ## 도커 컴포즈를 사용하는 이유

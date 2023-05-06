@@ -2,7 +2,7 @@
 layout: post
 title: "쿠버네티스 자원 사용량 제한"
 date: 2020-12-15
-categories: K8S
+categories: Infrastructure
 ---
 
 k8s 같은 컨테이너 오케스트레이션 툴의 장점은, 여러 대의 서버를 묶어 리소스를 풀로 사용할 수 있다는 것이다.

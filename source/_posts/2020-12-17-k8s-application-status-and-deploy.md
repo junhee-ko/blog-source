@@ -2,7 +2,7 @@
 layout: post
 title: "쿠버네티스 애플리케이션 상태와 배포"
 date: 2020-12-15
-categories: K8S
+categories: Infrastructure
 ---
 
 쿠버네티스는 애플리케이션을 안정적으로 배포하기 위한 몇 가지 기능을 제공한다.

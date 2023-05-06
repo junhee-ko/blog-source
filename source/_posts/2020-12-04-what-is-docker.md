@@ -2,7 +2,7 @@
 layout: post
 title: 도커란 ?
 date: 2020-12-04
-categories: K8S
+categories: Infrastructure
 ---
 
 ## Docker
