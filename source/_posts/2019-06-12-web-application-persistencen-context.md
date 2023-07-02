@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[자바 ORM 표준 JPA 프로그래밍] 13장_웹 어플리케이션과 영속성 관리"
+title: 웹 애플리케이션과 영속성 관리
 date:   2019-06-12
 categories: JPA
 ---

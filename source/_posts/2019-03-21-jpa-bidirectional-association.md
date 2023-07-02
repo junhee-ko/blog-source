@@ -1,7 +1,7 @@
 ---
 layout: post
-title: JPA 양방향 연관관계
-date: 2023-06-24
+title: 양방향 연관관계
+date: 2019-03-21
 categories: JPA
 ---
 
@@ -231,4 +231,4 @@ class Member(
 
 ---
 
-자바 ORM 표준 프로그래밍 <김영한>한
+자바 ORM 표준 프로그래밍 <김영한>

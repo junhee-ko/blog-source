@@ -1,7 +1,7 @@
 ---
 layout: post 
-title:  "[자바 ORM 표준 JPA 프로그래밍] 15장_고급 주제와 성능 최적화"
-date:   2019-06-29
+title: 성능 최적화
+date: 2019-06-29
 categories: JPA
 ---
 

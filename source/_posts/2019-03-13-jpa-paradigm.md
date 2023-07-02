@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "패러다임의 불일치"
-date:   2019-03-13
+title: 패러다임의 불일치
+date: 2019-03-13
 categories: JPA
 ---
 
@@ -58,5 +58,6 @@ categories: JPA
   - 너무 많이 한 번에 가져오려고 해도 문제이다.
 
 ---
+
 - https://www.inflearn.com/course/스프링-데이터-jpa
 - 자바 ORM 표준 프로그래밍 <김영한>

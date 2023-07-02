@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "[자바 ORM 표준 JPA 프로그래밍] 3장_영속성 관리"
-date:   2019-03-20
+title: Persistence Context
+date: 2019-03-19
 categories: JPA
 ---
 

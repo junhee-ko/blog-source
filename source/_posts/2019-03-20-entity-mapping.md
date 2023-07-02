@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "[자바 ORM 표준 JPA 프로그래밍] 4장_앤티티 매핑"
-date:   2019-03-20
+title: Entity Mapping
+date: 2019-03-20
 categories: JPA
 ---
 
