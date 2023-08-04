@@ -59,8 +59,8 @@ dept_emp 테이블은 (dep_no, emp_no) 두 개의 칼럼으로 인덱스가 생�
 ## 인덱스 스킵 스캔
 
 인덱스를 구성하는 칼럼의 순서가 매우 중요하다. 
-employees 테이블에 (gender, birth_date) 조합으로 인덱스가 구성되어 있다고 하자.
 
+employees 테이블에 (gender, birth_date) 조합으로 인덱스가 구성되어 있다고 하자.
 이 인덱스를 사용하려면 where 조건에 gender 칼럼에 대한 비교 조건이 필수다.
 
 ```mysql
@@ -76,7 +76,7 @@ where gender = 'M' and birtb_date >= '1965-02-01';
 ```
 
 MySQL 8.0 부터는 옵티마이저가 gender 칼럼을 건너뛰어서 birth_date 칼럼만으로도 인덱스 검색이 가능하게 해주는 인덱스 스킵 스캔 최적화 기능이 도입되었다.
-그래서 인덱스 스킵 스캔이 적용된다고 하면,
+그래서 인덱스 스킵 스캔이 적용된다고 하면 아래의 쿼리는,
 
 ```mysql
 select gender, birtb_date
@@ -84,7 +84,7 @@ from employees
 where birtb_date >= '1965-02-01';
 ```
 
-위 쿼리는 내부적으로 아래 2개의 쿼리를 실행는 것과 비슷한 형태로 최적화 된다.
+내부적으로 아래 2개의 쿼리를 실행는 것과 비슷한 형태로 최적화 된다.
 
 ```mysql
 select gender, birtb_date
