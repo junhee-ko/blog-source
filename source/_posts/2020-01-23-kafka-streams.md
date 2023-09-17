@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[카프카] 8장_카프카 스트림즈 API"
+title:  "카프카 스트림즈"
 date:   2020-01-26
 categories: Kafka
 ---

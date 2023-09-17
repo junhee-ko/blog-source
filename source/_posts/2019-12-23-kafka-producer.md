@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[카프카] 4장_카프카 프로듀서"
+title:  "카프카 프로듀서"
 date:   2019-12-23
 categories: Kafka
 ---

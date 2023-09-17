@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[카프카] 5장_카프카 컨슈머"
+title:  "카프카 컨슈머"
 date:   2019-12-24
 categories: Kafka
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[카프카] 3장_카프카 디자인"
+title:  "카프카 디자인"
 date:   2019-12-22
 categories: Kafka
 ---
