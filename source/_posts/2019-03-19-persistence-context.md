@@ -65,7 +65,7 @@ em.persist(member);
 ### 준영속
 
 영속성 컨텍스트가 관리하던 영속 상태의 엔티티를 영속성 컨텍스트가 관리하지 않으면, 준영속 상태가 된다.
-다음 방법 중 하나로 준영속 상태로 맏들 수 있다.
+다음 방법 중 하나로 준영속 상태로 만들 수 있다.
 
 ```java
 em.detatch(member); // or
@@ -105,7 +105,7 @@ em.persist(m);
 이제, 엔티티를 조회해보자.
 
 ```java
-entityManger.find(Member.class, "jko");
+entityManger.find(Member.class, "member01");
 ```
 
 em.find() 를 호출하면, 1차 캐시에 엔티티가 있으면 데이터베이스를 조회하지 않고 메모리에 있는 1차 캐시에서 엔티티를 조회한다.
@@ -145,10 +145,8 @@ transaction.commit();   // 커밋하는 순간, INSERT SQL 을 DB 에 보냄
 
 이것을 Transactional Write Behind (쓰기 지연) 라고 한다.
 
-트랜잭션을 커밋하면, 엔티티 메니저는 먼저 영속성 컨텍스트를 플러쉬한다.
-플러쉬란, 영속성 컨텍스트의 변경 내용을 DB 에 동기화하는 작업이다.
+트랜잭션을 커밋하면, 엔티티 메니저는 먼저 영속성 컨텍스트를 플러쉬하는데, 플러쉬란, 영속성 컨텍스트의 변경 내용을 DB 에 동기화하는 작업이다.
 즉, 쓰기 지연 SQL 저장소에 모인 쿼리를 DB 에 보낸다.
-
 이렇게 영속성 컨텍스트의 변경 내용을 DB 에 동기화한 후에, 실제 DB transaction commit 을 하게 된다.
 
 ### 엔티티 수정
@@ -192,7 +190,7 @@ public class Member {...}
 
 ```java
 Member m = em.find(Membser.class, "jko");   // 삭제하려면, 먼저 대상 엔티티를 조회해야한다.
-em.remove(m);   // em.remove(m) 를 호출하는 순간 영속성 컨텍스트에서 m 은 제거된다.
+em.remove(m);                               // em.remove(m) 를 호출하는 순간 영속성 컨텍스트에서 m 은 제거된다.
 ```
 
 엔티티 등록과 비슷하게, 삭제 쿼리를 쓰기 지연 SQL 저장소에 등록하고 트랜잭션을 커밋해서 flush()를 호출하면 데이터베이스에 삭제 쿼리를 전달한다.
