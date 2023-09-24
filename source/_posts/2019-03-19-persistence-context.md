@@ -5,7 +5,7 @@ date: 2019-03-19
 categories: JPA
 ---
 
-Entity 를 Entity Manager 를 통해 어떻게 사용하는지 정리하자.
+JPA 의 영속성 컨텍스트를 정리한다.
 
 ## Entity Manager Factory, Entity Manager
 
