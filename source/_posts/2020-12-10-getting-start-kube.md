@@ -38,7 +38,7 @@ kubelet 은 컨테이너의 생성/삭제 뿐만 아니라 마스터와 워커 �
 도커 엔진에서는 기본 단위가 도커 컨테이너이고, 스웜 모드에서는 기본 단위가 여러 컨테이너로 구성된 서비스이다.
 쿠버네티스에서는 컨테이너 애플리케이션을 배포하기 위한 기본 단위로, 포드라는 개념을 사용한다.
 
-![](/image/what-is-pod.png)
+![](/source/image/what-is-pod.png)
 
 포드는 한 개이상의 컨테이너로 구성된 컨테이너의 집합이다.
 Nginx 컨테이너로 구성된 Pod 를 생성하기 위해, nginx-pod.yaml 을 작성해보자.
@@ -68,7 +68,7 @@ kubectl apply -f nginx-pod.yaml
 
 ### Pod VS Docker Container
 
-![](/image/pod-share-network-interface.png)
+![](/source/image/pod-share-network-interface.png)
 
 쿠버네티스는 도커 컨테이너가 아니라 왜 굳이 포드라는 새로운 개념을 사용하는걸까 ?
 여러 리눅스 namespace 를 공유하는 여러 컨테이너들을 추상화된 집합으로 사용하기 위해서이다.
@@ -150,7 +150,7 @@ kubectl apply -f replicaset-nginx.yaml
 
 ## Deployment: 레플리카셋과 포드의 배포를 관리
 
-![](/image/what-is-deployment.png)
+![](/source/image/what-is-deployment.png)
 
 레플리카셋의 상위 오브젝트이다.
 디플로이먼트를 생성하면, 해당 디폴로이먼트에 대응하는 레플리카셋도 함께 생성된다.
@@ -187,7 +187,7 @@ kubectl apply -f deployment-nginx.yaml
 
 ### Deployment 사용 이유
 
-![](/image/how-works-deployment.png)
+![](/source/image/how-works-deployment.png)
 
 레플리카셋을 그대로 사용하지 않고, 왜 굳이 상위 개념을 도입해서 사용하는걸까 ?
 애플리케이션의 업데이트와 배포를 편하게 하기 위해서이다.
@@ -227,7 +227,7 @@ kubectl set image deployment my-nginx-delpoyment nginx=nginx:1.11
 
 ### ClusterIP
 
-![](/image/cluster-ip-type.png)
+![](/source/image/cluster-ip-type.png)
 
 쿠버네티스 내부에서만 포드들에 접근할 때 사용한다.
 아래 내용으로 hostname-svc-clusterip.yaml 파일을 작성하자.
@@ -257,7 +257,7 @@ kubectl apply -f hostname-svc-clusterip.yaml
 
 ### NodePort
 
-![](/image/nodeport-type.png)
+![](/source/image/nodeport-type.png)
 
 NodePort 타입의 서비스는, 클러스터 외부에서도 접근할 수 있다.
 모든 노드의 특정 포트를 개방해 서비스에 접근하는 방식이다.
@@ -293,7 +293,7 @@ kubectl apply -f hostname-svc-nodeport.yaml
 
 ### LoadBalancer
 
-![](/image/load-balancer-type.png)
+![](/source/image/load-balancer-type.png)
 
 LoadBalancer 타입의 서비스 는 AWS, GCP 같은 클라우드 플랫폼 환경에서만 사용할 수 있다.
 NodePort 를 사용할 때는, 각 노드의 IP 를 알아야 포드에 접근할 수 있었지만, LoadBalancer 타입의 서비스는 클라우드 플랫폼으로부터 도메인 이름과 IP 를 할당 받아 더 쉽게 포드에 접근 가능하다.
