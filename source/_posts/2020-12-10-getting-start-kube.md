@@ -11,27 +11,30 @@ Pod / Replica Set / Service / Deployment 오브젝트를 정리한다.
 
 ### 모든 리소스는 오브젝트 형태로 관리된다.
 
+쿠버네티스는 대부분의 리소스를 '오브젝트' 라고 불리는 형태로 관리한다.
 컨테이너의 집합 (Pods), 컨테이너의 집합을 관리하는 컨트롤러 (Replica Set), 사용자 (Service Account), 노드 (Node) ... 등 하나의 오브젝트로 관리된다.
 쿠버네티스에서 사용할 수 있는 오브젝트는 아래 명령어로 확인 가능하다.
 
+```shell
+kubectl api-resources
+```
+
 ### 명령어를 사용할 수 있지만, YAML 파일을 더 많이 사용한다.
 
-kubectl 이라는 명령어로 쿠버네티스를 사용할 수 있지만,
-YAML 파일로 컨테이너 뿐만 아니라 모든 리소스 오브젝트들에 사용될 수 있다.
+kubectl 이라는 명령어를 사용해서 대부분의 작업을 실행할 수 있지만, YAML 파일로 컨테이너 뿐만 아니라 모든 리소스 오브젝트들에 사용될 수 있다.
 
 ### 여러 개의 컴포넌트로 구성되어 있다.
 
 쿠버네티스 노드는 마스터 노드와 워커 노드로 나뉘어 있다.
-마스터 노드는 클러스터를 관리하는 역할을 하고, 워커 노드에는 애플리케이션 컨테이너가 생성된다.
-쿠버네티스는 도커를 포함한 많은 컴포넌트들이 도커 컨테이너로서 실행된다. 예를 들어,
-마스터 노드에는 kube-apiserver, kube-controller-manager, kube-schueduler, coreDNS 등이 실행된다.
+
+- 마스터 노드: 쿠버네티스가 제대로 동작할 수 있도록 클러스터를 관리
+- 워커 노드: 애플리케이션 컨테이너가 생성
+
+쿠버네티스는 도커를 포함한 많은 컴포넌트들이 실행된다. 
+예를 들어, 마스터 노드에는 kube-apiserver, kube-controller-manager, kube-scheduler, coreDNS 등이 실행된다.
 
 그리고, kubelet 이라는 에이전트가 모든 노드에 실행된다.
 kubelet 은 컨테이너의 생성/삭제 뿐만 아니라 마스터와 워커 노드 간 통신 역할을 담당한다.
-
-쿠버네티스 입장에서, 도커 데몬 또한 하나의 컴포넌트이다.
-도머 스웜 모드는 도커에 내장된 기능인 반면, 쿠버네티스는 그렇지 않다.
-오히려, 쿠버네티스가 도커를 이용하는 방식이다.
 
 ## Pod: 컨테이너를 다루는 기본 단위
 
@@ -45,10 +48,10 @@ Nginx 컨테이너로 구성된 Pod 를 생성하기 위해, nginx-pod.yaml 을 
 
 ```yaml
 apiVersion: v1
-kind: Pod
-metadata:
+kind: Pod # 리소스 종류
+metadata: # 리소스의 부가 정보 입력
   name: my-nginx-pod
-spec:
+spec: # 리소스 생성을 위한 자세한 정보
   containers:
   - name: my-nginx-container
     image: nginx:latest
@@ -59,7 +62,7 @@ spec:
 
 위 YAML 파일은 아래 명령어로 쿠버네티스에 생성할 수 있다.
 
-```script
+```shell
 kubectl apply -f nginx-pod.yaml
 ```
 
@@ -125,7 +128,7 @@ spec:
 
 그리고, 아래 명령어로 레플리카셋을 생성한다.
 
-```script
+```shell
 kubectl apply -f replicaset-nginx.yaml
 ```
 
@@ -181,7 +184,7 @@ spec:
 
 그리고 다음 명령어로 디플로이먼트를 생성한다.
 
-```script
+```shell
 kubectl apply -f deployment-nginx.yaml
 ```
 
@@ -199,7 +202,7 @@ kubectl apply -f deployment-nginx.yaml
 아래 명령어로,
 포드 탬플릿에 정의된 containers 항목의 nginx 라는 이름을 가진 컨테이너의 이미지를 nginx:1.11 로 변경하자.
 
-```script
+```shell
 kubectl set image deployment my-nginx-delpoyment nginx=nginx:1.11
 ```
 
@@ -249,7 +252,7 @@ spec:
 
 그리고 서비스를 생성하자.
 
-```script
+```shell
 kubectl apply -f hostname-svc-clusterip.yaml
 ```
 
@@ -281,7 +284,7 @@ spec:
 
 그리고 서비스를 생성하자.
 
-```script
+```shell
 kubectl apply -f hostname-svc-nodeport.yaml
 ```
 
